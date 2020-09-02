@@ -116,7 +116,7 @@ group_names = [("WWW", {'layout': 'monadtall'}),
                ("DEV", {'layout': 'monadtall'}),
                ("SYS", {'layout': 'monadtall'}),
                ("DOC", {'layout': 'monadtall'}),
-               ("VBOX", {'layout': 'monadtall'}),
+               ("VBOX", {'layout': 'floating'}),
                ("MED", {'layout': 'monadtall'}),
 ]
 
@@ -332,7 +332,7 @@ prueba2 = init_widgets_screen2()
 
 def init_screens():
     screens = [
-            Screen(top=bar.Bar(prueba,24),wallpaper = "/home/jason/.config/qtile/walls/0004.jpg", wallpaper_mode = "fill"),
+            Screen(top=bar.Bar(prueba,24),wallpaper = "/home/jason/.config/qtile/walls/nasa.jpg", wallpaper_mode = "fill"),
             Screen(top=bar.Bar(prueba2,24), wallpaper = "/home/jason/.config/qtile/walls/0006.jpg", wallpaper_mode = "fill"),
             ]
     return screens
