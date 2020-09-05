@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Theme
     Plug 'joshdick/onedark.vim'
+    Plug 'dracula/vim', { 'as': 'dracula' }
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -39,4 +40,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Close tag
     Plug 'alvan/vim-closetag'
-call plug#end()
+
+    "Brackets Color
+    Plug 'frazrepo/vim-rainbow'
+    call plug#end()

@@ -48,8 +48,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
 
     # Comandos personalizados
-    Key([mod, "shift"], "m", lazy.spawn("rofi -show run")),
-    Key([mod, "shift"], "n", lazy.spawn("rofi -show window")),
+    Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
+    Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
     Key([mod, "shift"], "r",  lazy.spawn("dmenu_run -p 'Run: '")),
     Key([mod, "shift"], "f", lazy.spawn("/usr/lib/firefoxD/firefox")),
 
@@ -271,13 +271,28 @@ def init_widgets_list():
         widget.Clock(
             foreground=colors[2],
             background="#6272a4",
-            format='%m-%d %a %I:%M %p',
+            format='%I:%M %p',
+        ),
+        widget.TextBox(
+            foreground=colors[2],
+            background="#6272a4",
+            text=" ",
+        ),
+        widget.Clock(
+            foreground=colors[2],
+            background="#6272a4",
+            format='%a %d-%m',
         ),
         widget.Sep(
             linewidth=0,
             padding=5,
             foreground=colors[0],
             background="#6272a4",
+        ),
+        widget.Pacman(
+            foreground=colors[2],
+            background="#6272a4",
+            update_interval=1800,
         ),
         widget.TextBox(
             text=" ",
