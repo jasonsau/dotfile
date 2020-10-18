@@ -1,4 +1,5 @@
 import os
+import dateutil
 import re
 import socket
 import subprocess
@@ -20,12 +21,23 @@ mod = "mod4"
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down()),
-    Key([mod], "j", lazy.layout.up()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
 
     # Moviendo el focus en stack
-    Key([mod, "shift"], "k", lazy.shuffle_down()),
-    Key([mod, "shift"], "j", lazy.shuffle_up()),
+
+    # Movimientos en Monadtallo
+    Key([mod, "control"], "h", lazy.layout.left()),
+    Key([mod, "control"], "l", lazy.layout.right()),
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod], "m", lazy.layout.maximize()),
+    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod], "h", lazy.layout.grow()),
+    Key([mod], "l", lazy.layout.shrink()),
+
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
@@ -70,12 +82,8 @@ keys = [
     Key([mod], "comma", lazy.prev_screen()),
 
 
-    Key([mod], "h", lazy.layout.grow()),
-    Key([mod], "l", lazy.layout.shrink()),
     Key([mod, "shift"], "f", lazy.window.toggle_floating()),
 
-    Key([mod], "m", lazy.layout.maximize()),
-    Key([mod], "n", lazy.layout.normalize()),
 
     Key([mod, "shift"], "g", lazy.window.toggle_fullscreen()),
 
@@ -85,12 +93,12 @@ keys = [
     Key([mod, "control"], "Return", lazy.layout.toggle_split()),
 ]
 
-group_names = [("1", {'layout': 'monadtall'}),
-               ("2", {'layout': 'monadtall'}),
-               ("3", {'layout': 'monadtall'}),
-               ("4", {'layout': 'monadtall'}),
-               ("5", {'layout': 'floating'}),
-               ("6", {'layout': 'monadtall'}),
+group_names = [("www", {'layout': 'monadtall'}),
+               ("term", {'layout': 'monadtall'}),
+               ("arc", {'layout': 'monadtall'}),
+               ("doc", {'layout': 'monadtall'}),
+               ("soc", {'layout': 'floating'}),
+               ("med", {'layout': 'monadtall'}),
                ]
 
 
@@ -104,8 +112,8 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {"border_width": 2,
                 "margin": 6,
-                "border_focus": "e1acff",
-                "border_normal": "1D2330"
+                "border_focus": "#e1acff",
+                "border_normal": "#1D2330"
                 }
 
 layouts = [
@@ -119,7 +127,7 @@ layouts = [
     layout.Zoomy(**layout_theme),
     # layout.VerticalTile(**layout_theme),
     # layout.Bsp(**layout_theme),
-    #layout.Tile(shift_windows=True, **layout_theme),
+    # layout.Tile(shift_windows=True, **layout_theme),
     # layout.Stack(num_stacks=2),
     layout.Floating(**layout_theme)
 ]
@@ -221,9 +229,22 @@ def init_widgets_list():
             text="",
             background=colors[5],
             foreground=colors[2],
-            padding=5,
+            padding=10,
         ),
         widget.KeyboardLayout(
+            foreground=colors[2],
+            background=colors[5],
+            padding=0,
+            configured_keyboards=['latam', 'us', 'us dvorak'],
+        ),
+        widget.TextBox(
+            text="墳",
+            foreground=colors[2],
+            background=colors[5],
+            padding=8,
+            mouse_callbacks={'Button1': open_pavucontrol},
+        ),
+        widget.Volume(
             foreground=colors[2],
             background=colors[5],
         ),
@@ -313,6 +334,7 @@ def init_widgets_list():
             background=colors[0],
             padding=5,
         ),
+
     ]
 
     return widgets_list

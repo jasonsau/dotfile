@@ -1,5 +1,5 @@
 configuration{
 show-icons:true;
-theme:"~/.config/rofi/theme/DarkBlue.rasi";
+theme:"~/.config/rofi/theme/onedark.rasi";
 }
 

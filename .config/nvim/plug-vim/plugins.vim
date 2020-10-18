@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Theme
     Plug 'joshdick/onedark.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'morhetz/gruvbox'
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -34,6 +35,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Icons
     Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     " Indent guides
     Plug 'Yggdroot/indentLine' 
@@ -43,4 +45,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Brackets Color
     Plug 'frazrepo/vim-rainbow'
+    Plug 'junegunn/rainbow_parentheses.vim'
+
+    "Easy
+    Plug 'easymotion/vim-easymotion'
+
+    "Colors
+    Plug 'norcalli/nvim-colorizer.lua' 
     call plug#end()

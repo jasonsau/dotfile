@@ -7,5 +7,10 @@ source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/rnvimr.vim
 source $HOME/.config/nvim/plug-config/commentary.vim
 source $HOME/.config/nvim/plug-config/alvan.vim
-source $HOME/.config/nvim/themes/dracula.vim
+" source $HOME/.config/nvim/themes/dracula.vim
 source $HOME/.config/nvim/plug-config/bracketsrainbox.vim
+source $HOME/.config/nvim/themes/gruvbox.vim
+source $HOME/.config/nvim/plug-config/nerdtree-syntax.vim
+source $HOME/.config/nvim/plug-config/raimbows.vim
+
+luafile $HOME/.config/nvim/plug-config/colorizer.lua
