@@ -3,3 +3,6 @@ picom &
 cbatticon &
 nitrogen --restore &
 volumeicon &
+udiskie -t &
+
+setxkbmap -layout us -variant dvorak

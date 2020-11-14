@@ -1,5 +1,3 @@
-import os
-import dateutil
 import re
 import socket
 import subprocess
@@ -63,7 +61,6 @@ keys = [
     Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
     Key([mod, "shift"], "r",  lazy.spawn("dmenu_run -p 'Run: '")),
-    Key([mod, "shift"], "f", lazy.spawn("/usr/lib/firefoxD/firefox")),
 
     # Subir y bajar brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
@@ -74,6 +71,9 @@ keys = [
         "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioLowerVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+
+    # Navegador
+    Key([], "XF86Search", lazy.spawn("firefox-bin")),
 
     # Cambio de pantalla
     Key([mod, "shift"], "w", lazy.to_screen(0)),
@@ -205,6 +205,7 @@ def init_widgets_list():
         widget.WindowName(
             foreground=colors[6],
             background=colors[0],
+            font="Ubuntu Mono Nerd Font"
         ),
         widget.TextBox(
             text="",
@@ -220,7 +221,7 @@ def init_widgets_list():
             padding=4
         ),
         widget.Net(
-            interface="wlan0",
+            interface="enp37s0",
             format='{down}↓↑{up}',
             foreground=colors[2],
             background=colors[5],
@@ -309,6 +310,11 @@ def init_widgets_list():
             padding=5,
             foreground=colors[0],
             background="#6272a4",
+        ),
+        widget.TextBox(
+            foreground=colors[2],
+            background="#6272a4",
+            text=" ",
         ),
         widget.Pacman(
             foreground=colors[2],

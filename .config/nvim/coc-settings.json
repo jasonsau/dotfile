@@ -7,7 +7,7 @@
         "yaml",
         "json",
         "python",
-        "php"
+        //       "php"
     ],
     // python config
     "python.linting.enabled": true,

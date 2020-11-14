@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "File Explorer
     "NERDTree
     Plug 'scrooloose/NERDTree'
+    Plug 'preservim/nerdTree'
     "ranger
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
