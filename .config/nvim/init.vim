@@ -13,4 +13,4 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 " source $HOME/.config/nvim/plug-config/nerdtree-syntax.vim
 " source $HOME/.config/nvim/plug-config/raimbows.vim
 
-" luafile $HOME/.config/nvim/plug-config/colorizer.lua
+luafile $HOME/.config/nvim/lua/plug-colorizer.lua
