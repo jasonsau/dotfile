@@ -1,4 +1,4 @@
-background_opacity: 1
+background_opacity: 0.95
 
 colors:
   # Default colors
@@ -32,7 +32,7 @@ colors:
   #   foreground: '0xc5c9de'
 font:
   normal:
-    family: "Mononoki Nerd Font" 
+    family: "Fira Code" 
     style: Regular
   bold:
     family: "Mononoki Nerd Font"

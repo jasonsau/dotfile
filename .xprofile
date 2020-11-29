@@ -4,5 +4,6 @@ cbatticon &
 nitrogen --restore &
 volumeicon &
 udiskie -t &
+variety &
 
 setxkbmap -layout us -variant dvorak
