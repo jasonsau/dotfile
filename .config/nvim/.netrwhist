@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/js/.config/rofi'
+let g:netrw_dirhist_5='/home/js/.config/rofi/theme'
+let g:netrw_dirhist_4='/home/js/.config/rofi'
+let g:netrw_dirhist_3='/home/js/.config/ranger'
 let g:netrw_dirhist_2='/var/log/httpd'
 let g:netrw_dirhist_1='/usr/lib/modules/5.9.1-arch1-1'
