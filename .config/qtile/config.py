@@ -75,6 +75,7 @@ keys = [
         "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioLowerVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    Key([mod], "v", lazy.spawn("pavucontrol")),
 
     # Navegador
     Key([], "XF86Search", lazy.spawn("firefox-bin")),
