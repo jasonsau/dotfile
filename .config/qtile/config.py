@@ -95,12 +95,12 @@ keys = [
     Key([mod, "control"], "Return", lazy.layout.toggle_split()),
 ]
 
-group_names = [("www", {'layout': 'monadtall'}),
-               ("term", {'layout': 'monadtall'}),
-               ("arc", {'layout': 'monadtall'}),
-               ("doc", {'layout': 'monadtall'}),
-               ("soc", {'layout': 'floating'}),
-               ("med", {'layout': 'monadtall'}),
+group_names = [("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'floating'}),
+               ("", {'layout': 'monadtall'}),
                ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -183,7 +183,7 @@ def init_widgets_list():
             background=colors[0],
         ),
         widget.GroupBox(
-            font="Fira Code",
+            font="Font Awesome",
             fontsize=10,
             margin_y=3,
             margin_x=0,
