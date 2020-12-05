@@ -1,11 +1,12 @@
-import re
-import socket
+# import re
+# import socket
 import subprocess
-import psutil
+# import psutil
 
 from os import listdir
 from os import path
 import json
+import os
 
 from Xlib import display as xdisplay
 from libqtile.config import Key, Screen, Group, Drag, Click
@@ -13,6 +14,10 @@ from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
 
+import os
+
+bashComand = "uname -r"
+process = os.system(bashComand)
 
 my_Term = "alacritty"
 mod = "mod4"
@@ -35,7 +40,6 @@ keys = [
     Key([mod], "n", lazy.layout.normalize()),
     Key([mod], "h", lazy.layout.grow()),
     Key([mod], "l", lazy.layout.shrink()),
-
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
@@ -60,7 +64,7 @@ keys = [
     # Comandos personalizados
     Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
-    Key([mod, "shift"], "r",  lazy.spawn("dmenu_run -p 'Run: '")),
+    Key([mod, "shift"], "r", lazy.spawn("dmenu_run -p 'Run: '")),
 
     # Subir y bajar brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
@@ -71,6 +75,7 @@ keys = [
         "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioLowerVolume", lazy.spawn(
         "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    Key([mod], "v", lazy.spawn("pavucontrol")),
 
     # Navegador
     Key([], "XF86Search", lazy.spawn("firefox-bin")),
@@ -81,26 +86,22 @@ keys = [
     Key([mod], "period", lazy.next_screen()),
     Key([mod], "comma", lazy.prev_screen()),
 
-
     Key([mod, "shift"], "f", lazy.window.toggle_floating()),
 
-
     Key([mod, "shift"], "g", lazy.window.toggle_fullscreen()),
-
 
     # Stack Controls
     Key([mod, "shift"], "space", lazy.layout.rotate(), lazy.layout.flip()),
     Key([mod, "control"], "Return", lazy.layout.toggle_split()),
 ]
 
-group_names = [("\61612", {'layout': 'monadtall'}),
-               ("term", {'layout': 'monadtall'}),
-               ("arc", {'layout': 'monadtall'}),
-               ("doc", {'layout': 'monadtall'}),
-               ("soc", {'layout': 'floating'}),
-               ("med", {'layout': 'monadtall'}),
+group_names = [("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'floating'}),
+               ("", {'layout': 'monadtall'}),
                ]
-
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -108,7 +109,6 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     # Switch to another group
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
-
 
 layout_theme = {"border_width": 2,
                 "margin": 6,
@@ -177,14 +177,14 @@ def init_widgets_list():
             padding=5,
         ),
         widget.CurrentLayout(
-            font="Ubuntu Bold",
+            font="Fira Code",
             fontsize=10,
             foreground=colors[2],
             background=colors[0],
         ),
         widget.GroupBox(
-            font="mononoki nerd font",
-            fontsize=9,
+            font="Font Awesome",
+            fontsize=10,
             margin_y=3,
             margin_x=0,
             padding_y=5,
@@ -205,7 +205,8 @@ def init_widgets_list():
         widget.WindowName(
             foreground=colors[6],
             background=colors[0],
-            font="Ubuntu Mono Nerd Font"
+            font="Fira Code",
+            fontsize=12
         ),
         widget.TextBox(
             text="",
@@ -213,6 +214,12 @@ def init_widgets_list():
             background=colors[0],
             padding=-3.3,
             fontsize=45
+        ),
+        widget.TextBox(
+            foreground=colors[2],
+            background=colors[5],
+            text=process,
+            padding=4
         ),
         widget.TextBox(
             foreground=colors[2],
@@ -374,7 +381,6 @@ if __name__ in ["config", "__main__"]:
     screens = init_screens()
     widgets_screen1 = init_widgets_list()
     widgets_screen2 = init_widgets_list()
-
 
 # Drag floating layouts.
 mouse = [
