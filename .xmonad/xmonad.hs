@@ -139,12 +139,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
-  , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ "alacritty" )
-  , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
-  , ((modMask, xK_F10), spawn $ "spotify" )
-  --, ((modMask .|. shiftMask, xK_n), spawn $ "rofi -show window --icons" )
-  , ((modMask .|. shiftMask, xK_m), spawn $ "rofi -show drun --icons" )
+  , ((modMask .|. shiftMask, xK_m), spawn $ "rofi -show drun")
+  , ((modMask .|. shiftMask, xK_n), spawn $ "rofi -show window")
 
   -- FUNCTION KEYS
 
@@ -158,39 +155,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- CONTROL + ALT KEYS
 
 
-  , ((0 .|. mod1Mask , xK_f ), spawn $ "firefox")
-  , ((controlMask .|. mod1Mask , xK_i ), spawn $ "nitrogen")
   , ((controlMask .|. mod1Mask , xK_r ), spawn $ "rofi-theme-selector")
   , ((controlMask .|. mod1Mask , xK_w ), spawn $ "arcolinux-welcome-app")
-
-  -- ALT + ... KEYS
-
-  , ((mod1Mask, xK_f), spawn $ "variety -f" )
-  , ((mod1Mask, xK_n), spawn $ "variety -n" )
-  , ((mod1Mask, xK_p), spawn $ "variety -p" )
-  , ((mod1Mask, xK_r), spawn $ "xmonad --restart" )
-  , ((mod1Mask, xK_t), spawn $ "variety -t" )
-  , ((mod1Mask, xK_Up), spawn $ "variety --pause" )
-  , ((mod1Mask, xK_Down), spawn $ "variety --resume" )
-  , ((mod1Mask, xK_Left), spawn $ "variety -p" )
-  , ((mod1Mask, xK_Right), spawn $ "variety -n" )
-  , ((mod1Mask, xK_F2), spawn $ "gmrun" )
-  , ((mod1Mask, xK_F3), spawn $ "xfce4-appfinder" )
-
-  --VARIETY KEYS WITH PYWAL
-
-  , ((mod1Mask .|. shiftMask , xK_f ), spawn $ "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_n ), spawn $ "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_p ), spawn $ "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_t ), spawn $ "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_u ), spawn $ "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-
-  --CONTROL + SHIFT KEYS
-
-
-  --SCREENSHOTS
-
-
 
   --MULTIMEDIA KEYS
 
@@ -253,13 +219,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask , xK_l), sendMessage Expand)
 
 
-  , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
 
-  -- Increment the number of windows in the master area.
-  , ((controlMask .|. modMask, xK_Left), sendMessage (IncMasterN 1))
 
-  -- Decrement the number of windows in the master area.
-  , ((controlMask .|. modMask, xK_Right), sendMessage (IncMasterN (-1)))
 
   ]
   ++

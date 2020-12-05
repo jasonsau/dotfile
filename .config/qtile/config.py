@@ -93,7 +93,7 @@ keys = [
     Key([mod, "control"], "Return", lazy.layout.toggle_split()),
 ]
 
-group_names = [("www", {'layout': 'monadtall'}),
+group_names = [("\61612", {'layout': 'monadtall'}),
                ("term", {'layout': 'monadtall'}),
                ("arc", {'layout': 'monadtall'}),
                ("doc", {'layout': 'monadtall'}),
@@ -162,7 +162,7 @@ def open_psensor(qtile):
 # Widgets Default
 widget_defaults = dict(
     font="UbuntuMono NerdFont",
-    fontsize=14,
+    fontsize=12,
     padding=3,
     background=colors[2]
 )
@@ -183,7 +183,7 @@ def init_widgets_list():
             background=colors[0],
         ),
         widget.GroupBox(
-            font="Ubuntu Bold",
+            font="mononoki nerd font",
             fontsize=9,
             margin_y=3,
             margin_x=0,
