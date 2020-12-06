@@ -7,6 +7,7 @@ from os import listdir
 from os import path
 import json
 import os
+from sys import stdin
 
 from Xlib import display as xdisplay
 from libqtile.config import Key, Screen, Group, Drag, Click
@@ -14,13 +15,9 @@ from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
 
-import os
-
-bashComand = "uname -r"
-process = os.system(bashComand)
-
 my_Term = "alacritty"
 mod = "mod4"
+
 
 keys = [
     # Switch between windows in current stack pane
@@ -95,12 +92,14 @@ keys = [
     Key([mod, "control"], "Return", lazy.layout.toggle_split()),
 ]
 
-group_names = [("", {'layout': 'monadtall'}),
-               ("", {'layout': 'monadtall'}),
-               ("", {'layout': 'monadtall'}),
-               ("", {'layout': 'monadtall'}),
-               ("", {'layout': 'floating'}),
-               ("", {'layout': 'monadtall'}),
+group_names = [(" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
+               ("謹 ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'floating'}),
+               ("ﱘ", {'layout': 'monadtall'}),
                ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -150,11 +149,6 @@ colors = [["#282a36", "#282a36"],  # panel background
 def open_pavucontrol(qtile):
     qtile.cmd_spawn("pavucontrol")
 
-
-def shutdown(qtile):
-    qtile.cmd_spawn("alacritty -e shutdown now")
-
-
 def open_psensor(qtile):
     qtile.cmd_spawn("psensor")
 
@@ -170,6 +164,7 @@ extension_defaults = widget_defaults.copy()
 
 
 def init_widgets_list():
+
     widgets_list = [
         widget.CurrentLayoutIcon(
             foreground=colors[2],
@@ -183,8 +178,8 @@ def init_widgets_list():
             background=colors[0],
         ),
         widget.GroupBox(
-            font="Font Awesome",
-            fontsize=10,
+            font="mononoki nerd font",
+            fontsize=12,
             margin_y=3,
             margin_x=0,
             padding_y=5,
@@ -218,7 +213,7 @@ def init_widgets_list():
         widget.TextBox(
             foreground=colors[2],
             background=colors[5],
-            text=process,
+            text=str(subprocess.call(['uname', '-r'])),
             padding=4
         ),
         widget.TextBox(
@@ -228,7 +223,7 @@ def init_widgets_list():
             padding=4
         ),
         widget.Net(
-            interface="enp37s0",
+            interface="wlo1",
             format='{down}↓↑{up}',
             foreground=colors[2],
             background=colors[5],
@@ -250,7 +245,7 @@ def init_widgets_list():
             foreground=colors[2],
             background=colors[5],
             padding=8,
-            mouse_callbacks={'Button1': open_pavucontrol},
+            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("pavucontrol")},
         ),
         widget.Volume(
             foreground=colors[2],
@@ -283,7 +278,7 @@ def init_widgets_list():
             foreground=colors[2],
             background="#bd93f9",
             padding=0,
-            mouse_callbacks={'Button1': open_psensor},
+            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("psensor")},
         ),
         widget.TextBox(
             text="",
@@ -295,7 +290,7 @@ def init_widgets_list():
         widget.TextBox(
             foreground=colors[2],
             background="#6272a4",
-            text=" ",
+            text="  ",
         ),
         widget.Clock(
             foreground=colors[2],
@@ -321,7 +316,7 @@ def init_widgets_list():
         widget.TextBox(
             foreground=colors[2],
             background="#6272a4",
-            text=" ",
+            text=" ",
         ),
         widget.Pacman(
             foreground=colors[2],
@@ -329,11 +324,12 @@ def init_widgets_list():
             update_interval=1800,
         ),
         widget.TextBox(
-            text=" ",
+            text=" ⏻ ",
             foreground=colors[2],
             background="#6272a4",
             padding=5,
-            mouse_callbacks={'Button1': shutdown},
+            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("arcolinux-logout") },
+            fontsize = 13,
         ),
         widget.TextBox(
             text="",
