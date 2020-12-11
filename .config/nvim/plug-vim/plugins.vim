@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "NERDTree
     Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
+
     "ranger
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
@@ -45,8 +46,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'alvan/vim-closetag'
 
     "Brackets Color
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'junegunn/rainbow_parentheses.vim'
 
     "Easy
     Plug 'easymotion/vim-easymotion'

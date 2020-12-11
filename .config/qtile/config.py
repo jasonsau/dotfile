@@ -110,7 +110,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 layout_theme = {"border_width": 2,
-                "margin": 6,
+                "margin": 8,
                 "border_focus": "#e1acff",
                 "border_normal": "#1D2330"
                 }
@@ -223,7 +223,7 @@ def init_widgets_list():
             padding=4
         ),
         widget.Net(
-            interface="wlo1",
+            interface="enp37s0",
             format='{down}↓↑{up}',
             foreground=colors[2],
             background=colors[5],
@@ -263,6 +263,7 @@ def init_widgets_list():
             foreground=colors[2],
             background="#bd93f9",
             padding=5,
+            mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn("alacritty -e htop")},
         ),
         widget.Memory(
             foreground=colors[2],
@@ -365,10 +366,8 @@ prueba2 = init_widgets_screen2()
 
 def init_screens():
     screens = [
-        Screen(top=bar.Bar(prueba, 24),
-               wallpaper="/home/jason/.config/qtile/walls/nasa.jpg", wallpaper_mode="fill"),
-        Screen(top=bar.Bar(prueba2, 24),
-               wallpaper="/home/jason/.config/qtile/walls/0006.jpg", wallpaper_mode="fill"),
+        Screen(top=bar.Bar(prueba, 22)),
+        Screen(top=bar.Bar(prueba2, 24)),
     ]
     return screens
 

@@ -1,6 +1,6 @@
 configuration{
 show-icons:true;
 modi: "drun,window,run";
-theme:"~/.config/rofi/theme/fancy.rasi";
+theme:"~/.config/rofi/theme/onedark.rasi";
 }
 

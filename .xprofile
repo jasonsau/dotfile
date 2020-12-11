@@ -1,5 +1,5 @@
 nm-applet &
-picom &
+picom --experimental-backends &
 cbatticon &
 nitrogen --restore &
 volumeicon &
