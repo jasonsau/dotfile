@@ -16,3 +16,8 @@ alias sysenable='sudo systemctl enable'
 alias sysstart='sudo systemctl start'
 alias sysstop='sudo systemctl stop'
 alias t='touch'
+
+
+
+
+

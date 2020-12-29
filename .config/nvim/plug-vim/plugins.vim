@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'morhetz/gruvbox'
+    Plug 'arcticicestudio/nord-vim'
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}

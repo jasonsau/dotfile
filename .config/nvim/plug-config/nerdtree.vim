@@ -5,3 +5,5 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeShowFiles=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeDirArrows=1

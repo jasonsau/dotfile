@@ -66,3 +66,6 @@
 .config/volumeicon/
 .config/xfce4/
 .config/fish/functions
+autostart.sh
+.config/qBittorrent
+.config/Atom

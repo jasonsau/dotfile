@@ -1,75 +1,56 @@
+background_opacity: 0.9
+colors:
+  bright:
+    black: '0x4d4d4d'
+    blue: '0xcaa9fa'
+    cyan: '0xaa91e3'
+    green: '0x5af78e'
+    magenta: '0xff92d0'
+    red: '0xff6e67'
+    white: '0xe6e6e6'
+    yellow: '0xeaf08d'
+  cursor:
+    cursor: '0xf8f8f2'
+    text: '0x191622'
+  dim:
+    black: '0x000000'
+    blue: '0x530aba'
+    cyan: '0x433364'
+    green: '0x049f2b'
+    magenta: '0xbb006b'
+    red: '0xa90000'
+    white: '0x5f5f5f'
+    yellow: '0xa3b106'
+  normal:
+    black: '0x000000'
+    blue: '0xbd93f9'
+    cyan: '0x8d79ba'
+    green: '0x50fa7b'
+    magenta: '0xff79c6'
+    red: '0xff5555'
+    white: '0xbfbfbf'
+    yellow: '0xeffa78'
+  primary:
+    background: '0x191622'
+    foreground: '0xe1e1e6'
 env:
   TERM: xterm-256color
-
+font:
+  bold:
+    family: Fira Code Nerd Font
+    style: Bold
+  italic:
+    family: Fira Code Nerd Font
+    style: Italic
+  normal:
+    family: Fira Code Nerd Font
+    style: Regular
+  size: 9.0
 window:
-  title: 'Alacritty'
-  
+  class:
+    general: Alacritty
+    instance: Alacritty
   padding:
     x: 6
     y: 6
-
-  class:
-    instance: Alacritty
-    general: Alacritty
-
-
-colors:
-  # Default colors
-  primary:
-    background: '0x282a36'
-    foreground: '0xf8f8f2'
-
-  cursor:
-    text: '0x44475a'
-    cursor: '0xf8f8f2'
-
-  selection:
-    text: '0xf8f8f2'
-    background: '0x44475a'
-
-  # Normal colors
-  normal:
-    black:   '0x000000'
-    red:     '0xff5555'
-    green:   '0x50fa7b'
-    yellow:  '0xf1fa8c'
-    blue:    '0xbd93f9'
-    magenta: '0xff79c6'
-    cyan:    '0x8be9fd'
-    white:   '0xbfbfbf'
-
-  # Bright colors
-  bright:
-    black:   '0x4d4d4d'
-    red:     '0xff6e67'
-    green:   '0x5af78e'
-    yellow:  '0xf4f99d'
-    blue:    '0xcaa9fa'
-    magenta: '0xff92d0'
-    cyan:    '0x9aedfe'
-    white:   '0xe6e6e6'
-
-  # Dim colors
-  dim:
-    black:   '0x14151b'
-    red:     '0xff2222'
-    green:   '0x1ef956'
-    yellow:  '0xebf85b'
-    blue:    '0x4d5b86'
-    magenta: '0xff46b0'
-    cyan:    '0x59dffc'
-    white:   '0xe6e6d1'
-
-background_opacity: 0.70
-
-font:
-  normal:
-    family: "Fira Code" 
-    style: Regular
-  bold:
-    family: "Fira Code"
-    style: Bold
-  italic:
-    family: "Fira Code"
-    style: Italic
-  size: 9.0
+  title: Alacritty
