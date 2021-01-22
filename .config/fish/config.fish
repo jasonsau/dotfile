@@ -1,4 +1,3 @@
-neofetch
 # set PATH $PATH /home/js/.local/bin
 
 set TERM "xterm-256color"
@@ -7,8 +6,8 @@ set TERM "xterm-256color"
 
 
 
-alias n='nvim'
-alias l='ls -lha'
+alias n='/usr/bin/nvim'
+alias l='exa -la'
 alias ..='cd ..'
 alias update='sudo pacman -Sy'
 alias install='sudo pacman -S'

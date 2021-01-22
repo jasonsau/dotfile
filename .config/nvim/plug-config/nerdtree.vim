@@ -7,3 +7,4 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeDirArrows=1
+let g:NERDTreeCascadeSingleChildDir=1

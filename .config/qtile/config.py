@@ -43,11 +43,6 @@ keys = [
 
     # Swap panes of split stack
     Key([mod, "shift"], "space", lazy.layout.rotate()),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn(my_Term)),
 
@@ -62,6 +57,7 @@ keys = [
     Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
     Key([mod, "shift"], "r", lazy.spawn("dmenu_run -p 'Run: '")),
+    Key([mod, "shift"], "Return", lazy.spawn("kitty")),
 
     # Subir y bajar brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
@@ -76,6 +72,7 @@ keys = [
 
     # Navegador
     Key([], "XF86Search", lazy.spawn("firefox-bin")),
+    Key([mod, "shift"], "p", lazy.spawn("pcmanfm")),
 
     # Cambio de pantalla
     Key([mod, "shift"], "w", lazy.to_screen(0)),
@@ -117,17 +114,18 @@ layout_theme = {"border_width": 2,
 
 layouts = [
     # layout.Stack(stacks=2, **layout_theme),
-    # layout.Columns(**layout_theme),
     # layout.RatioTile(**layout_theme),
+    layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Columns(**layout_theme, split = False, num_columns = 3),
     layout.Matrix(**layout_theme),
     layout.Zoomy(**layout_theme),
     # layout.VerticalTile(**layout_theme),
     # layout.Bsp(**layout_theme),
     # layout.Tile(shift_windows=True, **layout_theme),
     # layout.Stack(num_stacks=2),
+
     layout.Floating(**layout_theme)
 ]
 
@@ -257,6 +255,18 @@ def init_widgets_list():
             background=colors[5],
             padding=-3.3,
             fontsize=45
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors[2],
+            background="#bd93f9",
+            padding=5,
+            mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn("alacritty -e htop")},
+        ),
+        widget.CPU(
+            foreground=colors[2],
+            background="#bd93f9",
+            format = '{freq_current}GHz {load_percent}%'
         ),
         widget.TextBox(
             text="",

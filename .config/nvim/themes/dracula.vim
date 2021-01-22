@@ -1,4 +1,4 @@
-let g:dracula_colorterm =0
+" let g:dracula_colorterm =1
 syntax enable 
 colorscheme dracula 
 

@@ -9,18 +9,18 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "NERDTree
     Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
+    Plug 'junegunn/fzf.vim'
+    " Plug 'airblade/vim-rooter'
 
     "ranger
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
 
     "Theme
     Plug 'joshdick/onedark.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'morhetz/gruvbox'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -46,11 +46,19 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Close tag
     Plug 'alvan/vim-closetag'
 
-    "Brackets Color
 
     "Easy
     Plug 'easymotion/vim-easymotion'
 
     "Colors
     Plug 'norcalli/nvim-colorizer.lua' 
+
+    "Para laravel
+    Plug 'tpope/vim-dispatch'             
+    Plug 'tpope/vim-projectionist'        
+    Plug 'noahfrederick/vim-composer'    
+    Plug 'noahfrederick/vim-laravel'
+
     call plug#end()
+
+

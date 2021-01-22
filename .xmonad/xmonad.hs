@@ -157,9 +157,10 @@ myKeyBinding =
         ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         --Application
         ("<XF86Search>", spawn "firefox-bin"),
-        ("M-S-e", spawn "pcmanfm"),
+        ("M-S-p", spawn "pcmanfm"),
         ("M-v", spawn "pavucontrol"),
-        ("M-<Return>", spawn myTerminal)
+        ("M-<Return>", spawn myTerminal),
+        ("M-S-<Return>", spawn "kitty")
      
     ]
 

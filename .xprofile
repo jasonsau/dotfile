@@ -5,6 +5,8 @@ nitrogen --restore &
 volumeicon &
 udiskie -t &
 variety &
+redshift-gtk &
 
 setxkbmap -layout us -variant dvorak
 
+bar | xob -s volume &

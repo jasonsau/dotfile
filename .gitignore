@@ -69,3 +69,7 @@
 autostart.sh
 .config/qBittorrent
 .config/Atom
+.config/composer
+.config/kdeconnect
+.config/redshift
+.config/psysh
