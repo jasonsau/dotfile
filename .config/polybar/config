@@ -1,0 +1,193 @@
+[colors]
+background = #2e3440
+foreground = #ffffff
+green = #A3BE8C
+red = #BF616A
+pink = #B48EAD
+orange = #D08770
+yellow = #EBCB8B
+white = #ffffff
+
+[settings]
+padding-modules = 2
+
+
+[bar/mybar]
+monitor = "HDMI-0"
+font-0 = "mononoki Nerd Font:size=9:weight=bold"
+font-1 = "mononoki Nerd Font:size=9:weight=bold"
+width = 100%
+height = 20
+bottom = true;
+background = ${colors.background}
+foreground = #ffffff
+modules-left = ewmh title
+modules-center = nameKernel change-layout
+modules-right = network alsa cpu  memory date calendar update 
+dim-value = 1.0
+locale = es_SV.UTF-8
+tray-position = right
+module-margin-left = 0 
+module-margin-right = 0
+fixed-center = true
+line-size = 1
+padding = 1
+
+;Modulos
+[module/alsa]
+type = internal/alsa
+interval = 5
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted = 
+ramp-volume-0 = 
+ramp-volume-1 = 墳
+ramp-volume-2 = 
+format-volume-padding = 1
+format-muted-padding = ${settings.padding-modules}
+format-volume-background = ${colors.orange}
+label-volume-foreground = #ffffff
+ramp-volume-foreground = #ffffff
+click-left = exec pavucontrol
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label>
+label =   %percentage%%
+format-background = ${colors.yellow}
+label-foreground = #ffffff
+format-padding = ${settings.padding-modules}
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+thermal-zone = 0
+format = <label>
+label =   %temperature-c%
+
+[module/date]
+type = internal/date
+interval = 1.0
+time = %H:%M
+format = <label>
+label =  %time%
+label-foreground = #ffffff
+format-background = ${colors.pink}
+format-padding = 1
+
+[module/calendar]
+type = internal/date
+interval = 1.0
+date = %Y-%m-%d%
+format = <label>
+label =  %date%
+label-foreground = #ffffff
+format-background = ${colors.pink}
+format-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 1.0
+format = <label>
+label =  %mb_used%(%percentage_used%%)/%mb_total%(%percentage_free%%)
+format-background = ${colors.green}
+label-foreground = #ffffff
+format-padding = ${settings.padding-modules}
+
+[module/network]
+type = internal/network
+interface = enp37s0
+interval = 1.0
+format-connected = <label-connected>
+label-connected = %upspeed:7%  %downspeed:7%
+format-connected-background = ${colors.red}
+label-connected-foreground = #ffffff
+format-connected-padding = ${settings.padding-modules}
+
+[module/update]
+type = custom/script
+exec = ~/.local/bin/updates.sh
+format = <label>
+label =  %output%
+format-background = #6272a4
+label-foreground = #ffffff
+format-padding = ${settings.padding-modules}
+
+[module/nameKernel]
+type = custom/script
+exec = ~/.local/bin/nameKernel
+;format =  <label>
+label =  %output%
+format-prefix = "   "
+format-foreground = #859aee
+label-foreground = #ffffff
+format-underline = #859aee
+
+[module/ewmh]
+type = internal/xworkspaces
+enable-click = true
+enable-scroll = true
+
+icon-0 = 
+icon-1 = 
+icon-2 = 
+icon-3 = 
+icon-4 = 
+icon-5 = 
+icon-6 = 
+icon-7 = 
+icon-8 = 
+format = <label-state>
+label-monitor = %name%
+
+label-active = %{T2}%name%%{T}
+label-active-background = ${colors.green}
+label-active-underline = 
+label-active-padding = 1
+
+label-occupied = %{T2}%name%%{T}
+label-occupied-background = ${colors.red}
+label-occupied-padding = 1
+
+label-empty = %{T2}%name%%{T} 
+label-empty-foreground = ${colors.white}
+label-empty-padding = 1
+
+[module/title]
+type = internal/xwindow
+format = <label>
+format-foreground = #ffffff
+label = %title%
+label-maxien = 50
+format-padding = 4
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+mount-1 = /home
+interval = 50
+fixed-values = true
+format-mounted = <label-mounted>
+label-mounted = %mountpoint%: %used%/%total%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+format = <label-layout>
+format-prefix = " "
+label-layout = %name%
+label-layout-padding = ${settings.padding-modules}
+format-underline = #859aee
+
+[module/change-layout]
+type = custom/script
+tail = true
+exec = ~/.local/bin/currentLayout
+format = <label>
+format-prefix = "  "
+format-underline = #859aee
+label = %output%
+label-layout-padding = ${settings.padding-modules}
+click-left= exec ~/.local/bin/changeLayout
+interval = 0.5

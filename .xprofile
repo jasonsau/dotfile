@@ -1,3 +1,4 @@
+bar | xob -s volume &
 nm-applet &
 picom --experimental-backends &
 cbatticon &
@@ -7,6 +8,7 @@ udiskie -t &
 variety &
 redshift-gtk &
 
-setxkbmap -layout us -variant dvorak
+setxkbmap -layout us -variant dvorak &
 
-bar | xob -s volume &
+ 
+ sh ~/.config/polybar/launch.sh &

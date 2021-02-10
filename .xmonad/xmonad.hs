@@ -9,7 +9,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
 import XMonad.ManageHook
-import XMonad.Hooks.ManageHelpers(isFullscreen, doFullFloat)
+import XMonad.Hooks.ManageHelpers(isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Util.EZConfig
 import XMonad.Operations(kill)
 import XMonad.Actions.WithAll(sinkAll, killAll)
@@ -54,14 +54,15 @@ myModMask = mod4Mask
 myStartupHook = do
     -- spawnOnce "nitrogen --restore &"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    spawnOnce "variety &"
+    -- spawnOnce "variety &"
     setWMName "LG3D"
 
-myManageHook = composeAll
-    [className =? "nitrogen" --> doFloat,
-     title =? "Telegram Desktop" --> doFloat,
-     className =? "com.spotify.Client" --> doFloat
+myManageHook = composeAll . concat $
+    [ [className =? c --> doCenterFloat | c <- myCFloats]
     ]
+    where
+    myCFloats =  ["Arandr", "Spotify" , "Virtualbox"]
+
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True

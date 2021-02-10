@@ -1,4 +1,4 @@
-# set PATH $PATH /home/js/.local/bin
+ set PATH $PATH /home/js/.local/bin
 
 set TERM "xterm-256color"
 

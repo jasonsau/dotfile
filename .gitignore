@@ -73,3 +73,7 @@ autostart.sh
 .config/kdeconnect
 .config/redshift
 .config/psysh
+.config/Kvantum
+.config/font-manager
+.config/fontconfig
+.config/zathura

@@ -12,7 +12,7 @@ source $HOME/.config/nvim/themes/gruvbox.vim
 "source $HOME/.config/nvim/themes/onedark.vim
 "source $HOME/.config/nvim/themes/nord.vim
 " source $HOME/.config/nvim/themes/onehalf.vim
-"luafile $HOME/.config/nvim/lua/colorizer.lua
+luafile $HOME/.config/nvim/lua/colorizer.lua
 source $HOME/.config/nvim/plug-config/autopairs.vim
 source $HOME/.config/nvim/plug-config/closetag.vim
 source $HOME/.config/nvim/plug-config/identline.vim

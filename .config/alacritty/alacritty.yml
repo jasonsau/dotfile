@@ -25,13 +25,13 @@ env:
   TERM: xterm-256color
 font:
   bold:
-    family: Fira Code Nerd Font
+    family: mononoki Nerd Font
     style: Bold
   italic:
-    family: Fira Code Nerd Font
+    family: mononoki Nerd Font
     style: Italic
   normal:
-    family: Fira Code Nerd Font
+    family: mononoki Nerd Font
     style: Regular
   size: 9.0
 window:

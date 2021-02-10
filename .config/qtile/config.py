@@ -1,14 +1,8 @@
-# import re
-# import socket
 import subprocess
-# import psutil
-
 from os import listdir
 from os import path
 import json
 import os
-from sys import stdin
-
 from Xlib import display as xdisplay
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.lazy import lazy
@@ -96,7 +90,7 @@ group_names = [(" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'floating'}),
-               ("ﱘ", {'layout': 'monadtall'}),
+               ("ﱘ ", {'layout': 'monadtall'}),
                ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -376,8 +370,8 @@ prueba2 = init_widgets_screen2()
 
 def init_screens():
     screens = [
-        Screen(top=bar.Bar(prueba, 22)),
-        Screen(top=bar.Bar(prueba2, 24)),
+        # Screen(top=bar.Bar(prueba, 22)),
+        # Screen(top=bar.Bar(prueba2, 24)),
     ]
     return screens
 
@@ -404,6 +398,11 @@ bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
+    {'wmclass': 'Arandr'},
+    {'wname': 'Telegram'},
+    {'wmclass': 'redshift-gtk'},
+    {'wmclass': 'discord'},
+    {'wmclass': 'spotify'},
     {'wmclass': 'confirm'},
     {'wmclass': 'dialog'},
     {'wmclass': 'download'},
