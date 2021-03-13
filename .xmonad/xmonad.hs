@@ -6,6 +6,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks(ToggleStruts(..), avoidStruts, docksEventHook, manageDocks)
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.FadeInactive
 import XMonad.Util.Run(spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
 import XMonad.ManageHook
@@ -20,28 +21,28 @@ import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.WorkspaceHistory(workspaceHistoryHook)
 import XMonad.Actions.MouseResize
 
-import XMonad.Layout.Renamed
-import XMonad.Layout.ToggleLayouts as T(ToggleLayout (Toggle), toggleLayouts)
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.MultiToggle((??), EOT (EOT), mkToggle, single)
+import XMonad.Layout.Renamed 
+import XMonad.Layout.ToggleLayouts as T(ToggleLayout (Toggle), toggleLayouts) 
+import XMonad.Layout.WindowNavigation 
+import XMonad.Layout.MultiToggle((??), EOT (EOT), mkToggle, single) 
 import XMonad.Layout.MultiToggle.Instances(StdTransformers(MIRROR, NBFULL, NOBORDERS)) 
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.NoBorders
-import qualified XMonad.Layout.ToggleLayouts as T (ToggleLayout (Toggle), toggleLayouts)
-import XMonad.Layout.WindowArranger(WindowArrangerMsg(..), windowArrange)
-import qualified XMonad.Layout.MultiToggle as MT (Toggle (..))
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.Spacing
-import XMonad.Layout.Simplest
-import XMonad.Layout.Magnifier
-import XMonad.Layout.SubLayouts
-import XMonad.Layout.ShowWName
-import XMonad.Layout.GridVariants (Grid (Grid))
-import XMonad.Layout.ResizableTile
+import XMonad.Layout.LayoutModifier 
+import XMonad.Layout.NoBorders 
+import qualified XMonad.Layout.ToggleLayouts as T (ToggleLayout (Toggle), toggleLayouts) 
+import XMonad.Layout.WindowArranger(WindowArrangerMsg(..), windowArrange) 
+import qualified XMonad.Layout.MultiToggle as MT (Toggle (..)) 
+import XMonad.Layout.SimplestFloat 
+import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit) 
+import XMonad.Layout.Spacing 
+import XMonad.Layout.Simplest 
+import XMonad.Layout.Magnifier 
+import XMonad.Layout.SubLayouts 
+import XMonad.Layout.ShowWName 
+import XMonad.Layout.GridVariants (Grid (Grid)) 
+import XMonad.Layout.ResizableTile 
 import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Spiral
-
+import XMonad.Layout.Spiral 
+import XMonad.Layout.Tabbed
 
 
 myTerminal = "alacritty"
@@ -50,18 +51,30 @@ myFocusBorder = "#e1acff"
 myBorderWidth = 2
 myModMask = mod4Mask
 
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
+myTabTheme = def { fontName            = "xft:Mononoki Nerd Font"
+                 , activeColor         = "#46d9ff"
+                 , inactiveColor       = "#313846"
+                 , activeBorderColor   = "#46d9ff"
+                 , inactiveBorderColor = "#282c34"
+                 , activeTextColor     = "#282c34"
+                 , inactiveTextColor   = "#d0d0d0"
+                 }
 myStartupHook = do
     -- spawnOnce "nitrogen --restore &"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
     -- spawnOnce "variety &"
+    spawnOnce "double-screen.sh &"
+    spawnOnce "nitrogen --restore &"
     setWMName "LG3D"
 
 myManageHook = composeAll . concat $
     [ [className =? c --> doCenterFloat | c <- myCFloats]
     ]
     where
-    myCFloats =  ["Arandr", "Spotify" , "Virtualbox"]
+    myCFloats =  ["Arandr", "Spotify" , "Virtualbox", "Telegram"]
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -69,18 +82,34 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 -- Below is a variation of the above except no borders are applied
 -- if fewer than two windows. So a single window has no gaps.
-mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
-mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
+-- mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+-- mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Layouts definition
 
 tall = renamed [Replace "tall"]
     $ windowNavigation
+    $ addTabs shrinkText myTabTheme
+    $ subLayout [] (smartBorders Simplest)
     $ limitWindows 12
     $ mySpacing 4
-    $ ResizableTall 1 (3 / 100) (1 / 2) []
+    $ ResizableTall 1 (3/100) (1/2) []
 
-monocle = renamed [Replace "monocle"] $ limitWindows 20 Full
+magnify = renamed  [Replace "magnify"]
+    $ windowNavigation
+    $ addTabs shrinkText myTabTheme
+    $ subLayout [] (smartBorders Simplest)
+    $ magnifier
+    $ limitWindows 12
+    $ mySpacing 8
+    $ ResizableTall 1 (3/100) (1/2) []
+
+monocle = renamed [Replace "monocle"] 
+    $ windowNavigation
+    $ addTabs shrinkText myTabTheme
+    -- $ subLayout [] (smartBorders Simplest)
+    $ mySpacing 4
+    $ limitWindows 20 Full
 
 grid = renamed [Replace "grid"]
     $ windowNavigation
@@ -91,7 +120,7 @@ grid = renamed [Replace "grid"]
 
 threeCol = renamed [Replace "threeCol"]
     $ limitWindows 7
-    $ mySpacing' 4
+    $ mySpacing 4
     $ ThreeCol 1 (3 / 100) (1 / 3)
 
 threeRow = renamed [Replace "threeRow"]
@@ -105,26 +134,41 @@ spirals = renamed [Replace "spirals"]
     $ windowNavigation
     $ mySpacing 8
     $ spiral (6/7)
+tabs = renamed [Replace "tabs"]
+    $ tabbed shrinkText myTabTheme
 
 floats = renamed [Replace "floats"] $ limitWindows 20 simplestFloat
+
+myShowWNameTheme :: SWNConfig
+myShowWNameTheme = def
+    { swn_font             = "xft:Mononoki Nerd Font:bold:size=60",
+      swn_fade             = 1.0,
+      swn_bgcolor          = "#1c1f24",
+      swn_color            = "#ffffff"
+    }
+
+
+myLogHook :: X ()
+myLogHook = fadeInactiveLogHook fadeAmount
+    where fadeAmount = 1.0
 
 -- Layout hook
 
 myLayoutHook = avoidStruts 
-    $ smartBorders
     $ mouseResize
     $ windowArrange
     $ T.toggleLayouts floats
     $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
-    myDefaultLayout = 
-        tall
-        |||noBorders monocle
+    myDefaultLayout = tall
+        ||| magnify
+        ||| noBorders monocle
         ||| threeCol
         ||| grid
         ||| threeRow
         ||| floats
         ||| spirals
+        ||| tabs
 
 myKeyBinding = 
     [
@@ -165,31 +209,38 @@ myKeyBinding =
      
     ]
 
-myWorkspace= ["www","file","term","code","set","soc","music"]
--- myWorkspace= ["","","","","","","ﱘ"]
+-- myWorkspace= ["www","file","term","code","set","soc","music"]
+--       謹        (ﱘ
+-- f108
+myWorkspace= ["\xe745 ", "\xe5fe ", "\xe795 ", "\xf121 ", "\xf8c5 ", "\xf108 ", "\xe217 ", "\xf001 "]
 
 main :: IO ()
 main = do
 
     xmobarMonitor <- spawnPipe "xmobar -x 0 ~/.config/xmobar/screen0"
+    xmobarMonitor1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/screen1"
     xmonad $ ewmh  def{   
-        manageHook = (isFullscreen --> doFullFloat) <+> manageDocks <+> myManageHook <+> insertPosition End Newer,  
+        manageHook = (isFullscreen --> doFullFloat) <+>  myManageHook <+> manageDocks <+> insertPosition End Newer,  
         handleEventHook = docksEventHook,
         startupHook = myStartupHook,
         workspaces = myWorkspace,
         modMask = myModMask,
         borderWidth=myBorderWidth,
         terminal = myTerminal,
-        layoutHook = myLayoutHook,
+        layoutHook = showWName' myShowWNameTheme $ myLayoutHook,
         focusedBorderColor = myFocusBorder,
         normalBorderColor = myNormalBorder,
-        logHook =workspaceHistoryHook <+> dynamicLogWithPP xmobarPP{
-            ppOutput = \x -> hPutStrLn xmobarMonitor x,
-            ppCurrent = xmobarColor "#98be65" "" . wrap "[""]",
+        logHook =workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP{
+            ppOutput = \x -> hPutStrLn xmobarMonitor x >> hPutStrLn xmobarMonitor1 x,
+            ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]",
             ppVisible = xmobarColor "#98be65" "",
             ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "",
             ppHiddenNoWindows = xmobarColor "#c792ea" "",
-            ppTitle = xmobarColor "#b3afc2" "" . shorten 80
+            ppTitle = xmobarColor "#b3afc2" "" . shorten 80,
+            ppSep = "<fc=#666666> | </fc>",
+            ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!",
+            ppExtras = [windowCount],
+            ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
         }
     }`additionalKeysP` myKeyBinding
 

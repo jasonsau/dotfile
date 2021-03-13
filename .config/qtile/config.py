@@ -4,84 +4,85 @@ from os import path
 import json
 import os
 from Xlib import display as xdisplay
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
-from typing import List  # noqa: F401
+from typing import List  
+from libqtile import qtile
 
 my_Term = "alacritty"
 mod = "mod4"
 
 
 keys = [
-    # Switch between windows in current stack pane
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
+        # Switch between windows in current stack pane
+        Key([mod], "j", lazy.layout.down()),
+        Key([mod], "k", lazy.layout.up()),
 
-    # Moviendo el focus en stack
+        # Moviendo el focus en stack
 
-    # Movimientos en Monadtallo
-    Key([mod, "control"], "h", lazy.layout.left()),
-    Key([mod, "control"], "l", lazy.layout.right()),
-    Key([mod, "shift"], "h", lazy.layout.swap_left()),
-    Key([mod, "shift"], "l", lazy.layout.swap_right()),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "m", lazy.layout.maximize()),
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "h", lazy.layout.grow()),
-    Key([mod], "l", lazy.layout.shrink()),
+        # Movimientos en Monadtall
+        Key([mod, "control"], "h", lazy.layout.left()),
+        Key([mod, "control"], "l", lazy.layout.right()),
+        Key([mod, "shift"], "h", lazy.layout.swap_left()),
+        Key([mod, "shift"], "l", lazy.layout.swap_right()),
+        Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+        Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+        Key([mod], "m", lazy.layout.maximize()),
+        Key([mod], "n", lazy.layout.normalize()),
+        Key([mod], "h", lazy.layout.grow()),
+        Key([mod], "l", lazy.layout.shrink()),
 
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
+        # Switch window focus to other pane(s) of stack
+        Key([mod], "space", lazy.layout.next()),
 
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate()),
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn(my_Term)),
+        # Swap panes of split stack
+        Key([mod, "shift"], "space", lazy.layout.rotate()),
+        Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
+        Key([mod], "Return", lazy.spawn(my_Term)),
 
-    # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+        # Toggle between different layouts as defined below
+        Key([mod], "Tab", lazy.next_layout()),
+        Key([mod], "w", lazy.window.kill()),
 
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
+        Key([mod, "control"], "r", lazy.restart()),
+        Key([mod, "control"], "q", lazy.shutdown()),
 
-    # Comandos personalizados
-    Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
-    Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
-    Key([mod, "shift"], "r", lazy.spawn("dmenu_run -p 'Run: '")),
-    Key([mod, "shift"], "Return", lazy.spawn("kitty")),
+        # Comandos personalizados
+        Key([mod, "shift"], "m", lazy.spawn("rofi -show drun -show-icons")),
+        Key([mod, "shift"], "n", lazy.spawn("rofi -show window -show-icons")),
+        Key([mod, "shift"], "r", lazy.spawn("dmenu_run -p 'Run: '")),
+        Key([mod, "shift"], "Return", lazy.spawn("kitty")),
 
-    # Subir y bajar brillo
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+        # Subir y bajar brillo
+        Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
+        Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
-    # Subir y bajar volumen
-    Key([], "XF86AudioRaiseVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([mod], "v", lazy.spawn("pavucontrol")),
+        # Subir y bajar volumen
+        Key([], "XF86AudioRaiseVolume", lazy.spawn(
+            "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+        Key([], "XF86AudioLowerVolume", lazy.spawn(
+            "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+        Key([mod], "v", lazy.spawn("pavucontrol")),
 
-    # Navegador
-    Key([], "XF86Search", lazy.spawn("firefox-bin")),
-    Key([mod, "shift"], "p", lazy.spawn("pcmanfm")),
+        # widgets_screen2 = init_widgets_list()
+        Key([], "XF86Search", lazy.spawn("firefox")),
+        Key([mod, "shift"], "p", lazy.spawn("pcmanfm")),
 
-    # Cambio de pantalla
-    Key([mod, "shift"], "w", lazy.to_screen(0)),
-    Key([mod, "shift"], "e", lazy.to_screen(1)),
-    Key([mod], "period", lazy.next_screen()),
-    Key([mod], "comma", lazy.prev_screen()),
+        # Cambio de pantalla
+        Key([mod, "shift"], "w", lazy.to_screen(0)),
+        Key([mod, "shift"], "e", lazy.to_screen(1)),
+        Key([mod], "period", lazy.next_screen()),
+        Key([mod], "comma", lazy.prev_screen()),
 
-    Key([mod, "shift"], "f", lazy.window.toggle_floating()),
+        Key([mod, "shift"], "f", lazy.window.toggle_floating()),
 
-    Key([mod, "shift"], "g", lazy.window.toggle_fullscreen()),
+        Key([mod, "shift"], "g", lazy.window.toggle_fullscreen()),
 
-    # Stack Controls
-    Key([mod, "shift"], "space", lazy.layout.rotate(), lazy.layout.flip()),
-    Key([mod, "control"], "Return", lazy.layout.toggle_split()),
-]
+        # Stack Controls
+        Key([mod, "shift"], "space", lazy.layout.rotate(), lazy.layout.flip()),
+        Key([mod, "control"], "Return", lazy.layout.toggle_split()),
+    ]
 
 group_names = [(" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
@@ -109,8 +110,8 @@ layout_theme = {"border_width": 2,
 layouts = [
     # layout.Stack(stacks=2, **layout_theme),
     # layout.RatioTile(**layout_theme),
-    layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme),
+    layout.Max(**layout_theme),
     layout.MonadWide(**layout_theme),
     layout.Columns(**layout_theme, split = False, num_columns = 3),
     layout.Matrix(**layout_theme),
@@ -154,9 +155,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-
 def init_widgets_list():
-
     widgets_list = [
         widget.CurrentLayoutIcon(
             foreground=colors[2],
@@ -164,7 +163,7 @@ def init_widgets_list():
             padding=5,
         ),
         widget.CurrentLayout(
-            font="Fira Code",
+            font="mononoki NerdFont",
             fontsize=10,
             foreground=colors[2],
             background=colors[0],
@@ -179,21 +178,28 @@ def init_widgets_list():
             borderwidth=3,
             active=colors[2],
             inactive=colors[2],
-            rounded=False,
+            rounded = True,
             highlight_color=colors[1],
             highlight_method="line",
-            this_current_screen_border=colors[3],
+            this_current_screen_border=colors[6],
             this_screen_border=colors[4],
             other_current_screen_border=colors[0],
             other_screen_border=colors[0],
             foreground=colors[2],
             background=colors[0],
         ),
+        widget.WindowCount(
+            background = colors[0],
+            foreground = colors[6],
+            font = "mononoki NerdFont",
+            show_zero = True,
+            text_format = '  {num}',
+        ),
         widget.WindowName(
             foreground=colors[6],
             background=colors[0],
-            font="Fira Code",
-            fontsize=12
+            font="mononoki NerdFont",
+            fontsize=12,
         ),
         widget.TextBox(
             text="",
@@ -201,12 +207,6 @@ def init_widgets_list():
             background=colors[0],
             padding=-3.3,
             fontsize=45
-        ),
-        widget.TextBox(
-            foreground=colors[2],
-            background=colors[5],
-            text=str(subprocess.call(['uname', '-r'])),
-            padding=4
         ),
         widget.TextBox(
             foreground=colors[2],
@@ -230,14 +230,14 @@ def init_widgets_list():
             foreground=colors[2],
             background=colors[5],
             padding=0,
-            configured_keyboards=['latam', 'us', 'us dvorak'],
+            configured_keyboards=['us dvorak', 'us', 'latam'],
         ),
         widget.TextBox(
             text="墳",
             foreground=colors[2],
             background=colors[5],
             padding=8,
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("pavucontrol")},
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("pavucontrol")},
         ),
         widget.Volume(
             foreground=colors[2],
@@ -255,7 +255,7 @@ def init_widgets_list():
             foreground=colors[2],
             background="#bd93f9",
             padding=5,
-            mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn("alacritty -e htop")},
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e htop")},
         ),
         widget.CPU(
             foreground=colors[2],
@@ -267,7 +267,7 @@ def init_widgets_list():
             foreground=colors[2],
             background="#bd93f9",
             padding=5,
-            mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn("alacritty -e htop")},
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e htop")},
         ),
         widget.Memory(
             foreground=colors[2],
@@ -283,7 +283,7 @@ def init_widgets_list():
             foreground=colors[2],
             background="#bd93f9",
             padding=0,
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("psensor")},
+            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("psensor")},
         ),
         widget.TextBox(
             text="",
@@ -312,21 +312,14 @@ def init_widgets_list():
             background="#6272a4",
             format='%a %d-%m',
         ),
-        widget.Sep(
-            linewidth=0,
-            padding=5,
-            foreground=colors[0],
-            background="#6272a4",
-        ),
-        widget.TextBox(
-            foreground=colors[2],
-            background="#6272a4",
-            text=" ",
-        ),
-        widget.Pacman(
-            foreground=colors[2],
-            background="#6272a4",
-            update_interval=1800,
+        widget.CheckUpdates(
+            background = "#6272a4",
+            foreground = colors[2],
+            colour_no_updates = colors[2],
+            custom_command = 'checkupdates | wc -l',
+            display_format =  ' ﮮ Updates: {updates}',
+            distro = 'Arch',
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(my_Term+" -e sudo pacman -Syu")},
         ),
         widget.TextBox(
             text=" ⏻ ",
@@ -344,42 +337,28 @@ def init_widgets_list():
             fontsize=45
         ),
         widget.Systray(
-            # foreground=colors[2],
             background=colors[0],
             padding=5,
         ),
 
     ]
-
     return widgets_list
-
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1
 
-
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list()
-    return widgets_screen2
-
-
-prueba = init_widgets_screen1()
-prueba2 = init_widgets_screen2()
-
-
 def init_screens():
     screens = [
-        # Screen(top=bar.Bar(prueba, 22)),
-        # Screen(top=bar.Bar(prueba2, 24)),
+        Screen(top=bar.Bar(widgets = init_widgets_screen1(), opacity = 0.90, size=22)),
+        Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:5], size = 22)),
     ]
     return screens
 
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
-    widgets_screen1 = init_widgets_list()
-    widgets_screen2 = init_widgets_list()
+    widgets_list = init_widgets_list()
 
 # Drag floating layouts.
 mouse = [
@@ -396,28 +375,27 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
+
 floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    {'wmclass': 'Arandr'},
-    {'wname': 'Telegram'},
-    {'wmclass': 'redshift-gtk'},
-    {'wmclass': 'discord'},
-    {'wmclass': 'spotify'},
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirmreset'),
+    Match(wm_class='makebranch'),
+    Match(wm_class='maketag'),
+    Match(wm_class='ssh-askpass'),
+    Match(wm_class='branchdialog'),
+    Match(wm_class='pinentry'),
+    Match(wm_class='Arandr'),
+    Match(wm_class='spotify'),
+    Match(wm_class='redshift-gtk')
 ])
+
+#autostart
+@hook.subscribe.startup_complete
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

@@ -77,3 +77,7 @@ autostart.sh
 .config/font-manager
 .config/fontconfig
 .config/zathura
+.config/LanguageTool
+.config/droidcam
+.config/kdenlive-layoutsrc
+.config/kdenliverc

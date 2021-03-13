@@ -6,7 +6,7 @@ set TERM "xterm-256color"
 
 
 
-alias n='/usr/bin/nvim'
+alias n='nvim'
 alias l='exa -la'
 alias ..='cd ..'
 alias update='sudo pacman -Sy'

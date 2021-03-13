@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "NERDTree
     Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     " Plug 'airblade/vim-rooter'
 
@@ -46,19 +47,23 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Close tag
     Plug 'alvan/vim-closetag'
 
-
-    "Easy
+    "EasyMotion
     Plug 'easymotion/vim-easymotion'
 
     "Colors
-    Plug 'norcalli/nvim-colorizer.lua' 
+    Plug 'norcalli/nvim-colorizer.lua'
 
-    "Para laravel
+    "Laravel
     Plug 'tpope/vim-dispatch'             
     Plug 'tpope/vim-projectionist'        
     Plug 'noahfrederick/vim-composer'    
     Plug 'noahfrederick/vim-laravel'
 
+    "Telescope
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'   
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
     call plug#end()
 
 
