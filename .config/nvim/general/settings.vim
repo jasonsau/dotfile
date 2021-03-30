@@ -26,5 +26,3 @@ set clipboard=unnamedplus
 set relativenumber
 set autochdir                           
 set termguicolors
-
-

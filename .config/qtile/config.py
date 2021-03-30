@@ -19,7 +19,6 @@ keys = [
         Key([mod], "j", lazy.layout.down()),
         Key([mod], "k", lazy.layout.up()),
 
-        # Moviendo el focus en stack
 
         # Movimientos en Monadtall
         Key([mod, "control"], "h", lazy.layout.left()),
@@ -313,12 +312,13 @@ def init_widgets_list():
             format='%a %d-%m',
         ),
         widget.CheckUpdates(
+            update_interval = 1800,
             background = "#6272a4",
             foreground = colors[2],
             colour_no_updates = colors[2],
-            custom_command = 'checkupdates | wc -l',
-            display_format =  ' ﮮ Updates: {updates}',
-            distro = 'Arch',
+            # custom_command = "checkupdates",
+            display_format =  "{updates} ﮮ Updates",
+            distro = 'Arch_checkupdates',
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(my_Term+" -e sudo pacman -Syu")},
         ),
         widget.TextBox(
@@ -328,6 +328,13 @@ def init_widgets_list():
             padding=5,
             mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("arcolinux-logout") },
             fontsize = 13,
+        ),
+        widget.Pomodoro(
+            foreground=colors[2],
+            background="#6272a4",
+            length_pomodori = 25,
+            length_short_break = 5,
+            length_long_break = 15,
         ),
         widget.TextBox(
             text="",

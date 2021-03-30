@@ -25,15 +25,15 @@ env:
   TERM: xterm-256color
 font:
   bold:
-    family: mononoki Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Bold
   italic:
-    family: mononoki Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Italic
   normal:
-    family: mononoki Nerd Font
+    family: CaskaydiaCove Nerd Font
     style: Regular
-  size: 9.0
+  size: 10
 window:
   class:
     general: Alacritty
