@@ -22,6 +22,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'arcticicestudio/nord-vim'
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'crusoexia/vim-monokai'
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}

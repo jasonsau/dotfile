@@ -13,10 +13,11 @@ else
     source $HOME/.config/nvim/plug-config/closetag.vim
     source $HOME/.config/nvim/plug-config/identline.vim
     source $HOME/.config/nvim/plug-config/fzf.vim
-    source $HOME/.config/nvim/themes/dracula.vim
     source $HOME/.config/nvim/plug-config/prettier.vim
+    " source $HOME/.config/nvim/themes/monokai.vim
+    " source $HOME/.config/nvim/themes/dracula.vim
     " source $HOME/.config/nvim/themes/gruvbox.vim
-    "source $HOME/.config/nvim/themes/onedark.vim
+    source $HOME/.config/nvim/themes/onedark.vim
     "source $HOME/.config/nvim/themes/nord.vim
     " source $HOME/.config/nvim/themes/onehalf.vim
     " luafile $HOME/.config/nvim/lua/colorizer.lua

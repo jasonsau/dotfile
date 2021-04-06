@@ -62,6 +62,10 @@ keys = [
             "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
         Key([], "XF86AudioLowerVolume", lazy.spawn(
             "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+        Key([mod], "Up", "XF86AudioRaiseVolume", lazy.spawn(
+            "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+        Key([mod], "Down", "XF86AudioLowerVolume", lazy.spawn(
+            "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
         Key([mod], "v", lazy.spawn("pavucontrol")),
 
         # widgets_screen2 = init_widgets_list()

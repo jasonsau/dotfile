@@ -198,8 +198,10 @@ myKeyBinding =
         ("M-<Space>", sendMessage(T.Toggle "floats")),
 
         --Volumen
-        ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-        ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+        -- ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        -- ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+        ("M-<Up>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        ("M-<Down>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         --Application
         ("<XF86Search>", spawn "firefox-bin"),
         ("M-S-p", spawn "pcmanfm"),
