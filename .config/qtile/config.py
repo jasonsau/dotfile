@@ -136,19 +136,6 @@ colors = [["#282a36", "#282a36"],  # panel background
           ["#e1acff", "#e1acff"], ]  # window name
 
 
-##### PROMPT #####
-# prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-
-### MOUSE CALLBACKS ###
-
-
-def open_pavucontrol(qtile):
-    qtile.cmd_spawn("pavucontrol")
-
-def open_psensor(qtile):
-    qtile.cmd_spawn("psensor")
-
-
 # Widgets Default
 widget_defaults = dict(
     font="UbuntuMono NerdFont",
@@ -156,6 +143,7 @@ widget_defaults = dict(
     padding=3,
     background=colors[2]
 )
+
 extension_defaults = widget_defaults.copy()
 
 def init_widgets_list():
@@ -205,11 +193,14 @@ def init_widgets_list():
             fontsize=12,
         ),
         widget.TextBox(
-            text="",
+            # text="",
+            text="",
             foreground=colors[5],
-            background=colors[0],
-            padding=-3.3,
-            fontsize=45
+            background=None,
+            # padding=-3.3,
+             padding=-0.5,
+            # fontsize=45
+            fontsize=25,
         ),
         widget.TextBox(
             foreground=colors[2],
@@ -247,11 +238,18 @@ def init_widgets_list():
             background=colors[5],
         ),
         widget.TextBox(
-            text="",
+            text=" ",
+            foreground=colors[5],
+            background=None,
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
             foreground="#bd93f9",
-            background=colors[5],
-            padding=-3.3,
-            fontsize=45
+            background=None,
+            padding=-0.5,
+            fontsize=25,
         ),
         widget.TextBox(
             text=" ",
@@ -285,15 +283,22 @@ def init_widgets_list():
         widget.ThermalSensor(
             foreground=colors[2],
             background="#bd93f9",
-            padding=0,
+            padding=2,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("psensor")},
         ),
         widget.TextBox(
-            text="",
+            text=" ",
+            foreground="#bd93f9",
+            background=None,
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
             foreground="#6272a4",
-            background="#bd93f9",
-            padding=-3.3,
-            fontsize=45
+            background=None,
+            padding=-0.5,
+            fontsize=25,
         ),
         widget.TextBox(
             foreground=colors[2],
@@ -341,15 +346,29 @@ def init_widgets_list():
             length_long_break = 15,
         ),
         widget.TextBox(
-            text="",
-            foreground=colors[0],
-            background="#6272a4",
-            padding=-3.3,
-            fontsize=45
+            text=" ",
+            foreground="#6272a4",
+            background=None,
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
+            foreground="#000000",
+            background=None,
+            padding=-0.5,
+            fontsize=25,
         ),
         widget.Systray(
-            background=colors[0],
+            background="#000000",
             padding=5,
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground="#000000",
+            background=None,
+            padding=-0.5,
+            fontsize=25,
         ),
 
     ]
@@ -361,7 +380,7 @@ def init_widgets_screen1():
 
 def init_screens():
     screens = [
-        Screen(top=bar.Bar(widgets = init_widgets_screen1(), opacity = 0.90, size=22)),
+        Screen(top=bar.Bar(widgets = init_widgets_screen1(), opacity = 1, size=22)),
         Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:5], size = 22)),
     ]
     return screens
@@ -399,7 +418,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='pinentry'),
     Match(wm_class='Arandr'),
     Match(wm_class='spotify'),
-    Match(wm_class='redshift-gtk')
+    Match(wm_class='redshift-gtk'),
+    Match(wm_class='nitrogen'),
 ])
 
 #autostart
@@ -411,12 +431,4 @@ def autostart():
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"
