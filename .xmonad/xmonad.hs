@@ -74,7 +74,7 @@ myManageHook = composeAll . concat $
     [ [className =? c --> doCenterFloat | c <- myCFloats]
     ]
     where
-    myCFloats =  ["Arandr", "Spotify" , "Virtualbox", "Telegram"]
+    myCFloats =  ["Arandr", "Spotify" , "Virtualbox", "TelegramDesktop"]
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -198,10 +198,8 @@ myKeyBinding =
         ("M-<Space>", sendMessage(T.Toggle "floats")),
 
         --Volumen
-        -- ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-        -- ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-        ("M-<Up>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-        ("M-<Down>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+        ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         --Application
         ("<XF86Search>", spawn "firefox-bin"),
         ("M-S-p", spawn "pcmanfm"),

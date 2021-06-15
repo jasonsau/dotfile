@@ -10,4 +10,4 @@ Config { font    = "xft:Mononoki Nerd Font :weight=bold:pixelsize=12.2:antialias
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<fc=#666666></fc>%UnsafeStdinReader%}{" }
+       , template = "<fc=#666666></fc>  %UnsafeStdinReader%}{" }

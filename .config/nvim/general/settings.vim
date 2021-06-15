@@ -26,3 +26,5 @@ set clipboard=unnamedplus
 set relativenumber
 set autochdir                           
 set termguicolors
+
+set guifont=CaskaydiaCove\ Nerd\ Font:h15

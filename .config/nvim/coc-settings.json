@@ -3,7 +3,6 @@
     "css",
     "markdown",
     "graphql",
-    "html",
     "yaml"
   ],
   "python.linting.enabled": true,

@@ -20,4 +20,4 @@ Config { font    = "xft:mononoki Nerd Font:style=Bold:weight=bold:pixelsize=12.4
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<fc=#666666></fc>%UnsafeStdinReader% }{  <fc=#668bd7>  %kernel%  %enp37s0% %cpu%</fc><fc=#8d62a9>%memory% <action='pavucontrol'>墳 </action>%volumen%</fc> <fc=#6272a4><action='alacritty -e ls'> </action> %update%  %date% | </fc>%trayerpad%" }
+       , template = "<fc=#666666></fc>  %UnsafeStdinReader% }{  <fc=#668bd7>  %kernel%  %enp37s0% %cpu%</fc><fc=#8d62a9>%memory% <action='pavucontrol'>墳 </action>%volumen%</fc> <fc=#6272a4><action='alacritty -e ls'> </action> %update%  %date% | </fc>%trayerpad%" }

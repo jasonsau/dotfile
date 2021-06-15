@@ -6,7 +6,6 @@ dp=`xrandr | grep ' connected' | grep 'DP' | awk '{print $1}'`
 echo "$dp"
 
 if [ "$dp" = "DP-0" ]; then
-    echo "Ha entrado"
     xrandr --output DVI-D-0 --off --output HDMI-0 --primary --mode 2560x1080 --pos 1366x0 --rotate normal --output DP-0 --mode 1366x768 --pos 0x156 --rotate normal --output DP-1 --off &
 else 
     xrandr --output HDMI-0 --primary --mode 2560x1080 --pos 0x0 --rotate normal &
