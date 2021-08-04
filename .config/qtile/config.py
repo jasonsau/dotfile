@@ -90,7 +90,7 @@ keys = [
 group_names = [(" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
-               ("謹 ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'floating'}),
@@ -105,7 +105,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 layout_theme = {"border_width": 2,
-                "margin": 8,
+                "margin": 10,
                 "border_focus": "#e1acff",
                 "border_normal": "#1D2330"
                 }
@@ -123,7 +123,6 @@ layouts = [
     # layout.Bsp(**layout_theme),
     # layout.Tile(shift_windows=True, **layout_theme),
     # layout.Stack(num_stacks=2),
-
     layout.Floating(**layout_theme)
 ]
 
@@ -404,7 +403,7 @@ dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = True
+cursor_warp = False
 auto_minimize = True
 
 

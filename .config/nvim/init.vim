@@ -1,7 +1,4 @@
-if exists('g:vscode')
-    source $HOME/.config/nvim/vs-code/settins.vim
-
-else
+if !exists('g:vscode')
     source $HOME/.config/nvim/general/settings.vim
     source $HOME/.config/nvim/keys/mappings.vim
     source $HOME/.config/nvim/plug-vim/plugins.vim
@@ -21,5 +18,8 @@ else
     "source $HOME/.config/nvim/themes/nord.vim
     " source $HOME/.config/nvim/themes/onehalf.vim
     " luafile $HOME/.config/nvim/lua/colorizer.lua
+
+else
+    source $HOME/.config/nvim/vs-code/settins.vim
 
 endif
