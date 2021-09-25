@@ -3,7 +3,9 @@
     "css",
     "markdown",
     "graphql",
-    "yaml"
+    "yaml",
+    "js",
+    "xml"
   ],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,

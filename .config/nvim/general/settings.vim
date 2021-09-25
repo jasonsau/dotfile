@@ -1,5 +1,5 @@
 syntax enable                           
-set hidden                             
+" set hidden                             
 set wrap                              
 set encoding=utf-8                   
 set pumheight=10                        
@@ -27,4 +27,5 @@ set relativenumber
 set autochdir                           
 set termguicolors
 
-set guifont=CaskaydiaCove\ Nerd\ Font:h15
+set colorcolumn=+1
+set colorcolumn=100

@@ -13,7 +13,6 @@ from libqtile import qtile
 my_Term = "alacritty"
 mod = "mod4"
 
-
 keys = [
         # Switch between windows in current stack pane
         Key([mod], "j", lazy.layout.down()),
@@ -96,6 +95,19 @@ group_names = [(" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'floating'}),
                ("ﱘ ", {'layout': 'monadtall'}),
                ]
+colors_dracula = {
+        "Background": "#282a36",
+        "Foreground": "#f8f8f2",
+        "Comment": "#6272a4",
+        "Current": "#44475a",
+        "Cyan": "#8be9fd",
+        "Green": "#50fa7b",
+        "Orange": "#ffb86c",
+        "Pink": "#ad00a8",
+        "Purple": "#bd93f9",
+        "Red": "#ff5555",
+        "Yellow": "#f1fa8c"
+        }
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -106,7 +118,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {"border_width": 2,
                 "margin": 10,
-                "border_focus": "#e1acff",
+                "border_focus": colors_dracula["Purple"],
                 "border_normal": "#1D2330"
                 }
 
@@ -126,13 +138,7 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282a36", "#282a36"],  # panel background
-          ["#434758", "#434758"],  # background for current screen tab
-          ["#ffffff", "#ffffff"],  # font color for group names
-          ["#ff5555", "#ff5555"],  # border line color for current tab
-          ["#8d62a9", "#8d62a9"],  # border line color for other tab and odd widgets
-          ["#668bd7", "#668bd7"],  # color for the even widgets
-          ["#e1acff", "#e1acff"], ]  # window name
+
 
 
 # Widgets Default
@@ -140,7 +146,7 @@ widget_defaults = dict(
     font="UbuntuMono NerdFont",
     fontsize=12,
     padding=3,
-    background=colors[2]
+    background=colors_dracula["Background"]
 )
 
 extension_defaults = widget_defaults.copy()
@@ -148,15 +154,15 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
         widget.CurrentLayoutIcon(
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Purple"],
             padding=5,
         ),
         widget.CurrentLayout(
             font="mononoki NerdFont",
-            fontsize=10,
-            foreground=colors[2],
-            background=colors[0],
+            fontsize=11,
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Background"],
         ),
         widget.GroupBox(
             font="mononoki nerd font",
@@ -166,208 +172,270 @@ def init_widgets_list():
             padding_y=5,
             padding_x=5,
             borderwidth=3,
-            active=colors[2],
-            inactive=colors[2],
+            active=colors_dracula["Pink"],
+            inactive=colors_dracula["Foreground"],
+            block_highlight_text_color=colors_dracula["Foreground"],
             rounded = True,
-            highlight_color=colors[1],
-            highlight_method="line",
-            this_current_screen_border=colors[6],
-            this_screen_border=colors[4],
-            other_current_screen_border=colors[0],
-            other_screen_border=colors[0],
-            foreground=colors[2],
-            background=colors[0],
+            highlight_method="block",
+            this_current_screen_border=colors_dracula["Comment"],
+            this_screen_border=colors_dracula["Current"],
+            other_current_screen_border=colors_dracula["Comment"],
+            other_screen_border=colors_dracula["Current"],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Background"],
         ),
         widget.WindowCount(
-            background = colors[0],
-            foreground = colors[6],
+            background = colors_dracula["Background"],
+            foreground = colors_dracula["Foreground"],
             font = "mononoki NerdFont",
             show_zero = True,
             text_format = '  {num}',
         ),
         widget.WindowName(
-            foreground=colors[6],
-            background=colors[0],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Background"],
             font="mononoki NerdFont",
             fontsize=12,
         ),
         widget.TextBox(
             # text="",
             text="",
-            foreground=colors[5],
-            background=None,
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
             # padding=-3.3,
              padding=-0.5,
             # fontsize=45
             fontsize=25,
         ),
         widget.TextBox(
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Current"],
             text="",
             padding=4
         ),
         widget.Net(
             interface="enp37s0",
             format='{down}↓↑{up}',
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Current"],
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            # text="",
+            text="",
+            foreground=colors_dracula["Comment"],
+            background=colors_dracula["Background"],
+            # padding=-3.3,
+             padding=-0.5,
+            # fontsize=45
+            fontsize=25,
         ),
         widget.TextBox(
             text="",
-            background=colors[5],
-            foreground=colors[2],
+            background=colors_dracula["Comment"],
+            foreground=colors_dracula["Foreground"],
             padding=10,
         ),
         widget.KeyboardLayout(
-            foreground=colors[2],
-            background=colors[5],
+            background=colors_dracula["Comment"],
+            foreground=colors_dracula["Foreground"],
             padding=0,
             configured_keyboards=['us dvorak', 'us', 'latam'],
         ),
         widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Comment"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            # text="",
+            text="",
+            foreground=colors_dracula["Purple"],
+            background=colors_dracula["Background"],
+            # padding=-3.3,
+             padding=-0.5,
+            # fontsize=45
+            fontsize=25,
+        ),
+        widget.TextBox(
             text="墳",
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Purple"],
             padding=8,
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("pavucontrol")},
         ),
         widget.Volume(
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Purple"],
         ),
         widget.TextBox(
             text=" ",
-            foreground=colors[5],
-            background=None,
+            foreground=colors_dracula["Purple"],
+            background=colors_dracula["Background"],
             padding=-0.5,
             fontsize=25,
         ),
         widget.TextBox(
             text="",
-            foreground="#bd93f9",
-            background=None,
+            foreground=colors_dracula["Pink"],
+            background=colors_dracula["Background"],
             padding=-0.5,
             fontsize=25,
         ),
         widget.TextBox(
             text=" ",
-            foreground=colors[2],
-            background="#bd93f9",
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Pink"],
             padding=5,
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e htop")},
         ),
         widget.CPU(
-            foreground=colors[2],
-            background="#bd93f9",
-            format = '{freq_current}GHz {load_percent}%'
-        ),
-        widget.TextBox(
-            text="",
-            foreground=colors[2],
-            background="#bd93f9",
-            padding=5,
-            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e htop")},
-        ),
-        widget.Memory(
-            foreground=colors[2],
-            background="#bd93f9",
-        ),
-        widget.TextBox(
-            text=" ",
-            foreground=colors[2],
-            background="#bd93f9",
-            padding=8,
-        ),
-        widget.ThermalSensor(
-            foreground=colors[2],
-            background="#bd93f9",
-            padding=2,
-            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("psensor")},
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Pink"],
+            format = '{freq_current}GHz {load_percent}%',
+            font = "mononoki Nerd Font"
         ),
         widget.TextBox(
             text=" ",
-            foreground="#bd93f9",
-            background=None,
+            foreground=colors_dracula["Pink"],
+            background=colors_dracula["Background"],
             padding=-0.5,
             fontsize=25,
         ),
         widget.TextBox(
             text="",
-            foreground="#6272a4",
-            background=None,
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
             padding=-0.5,
             fontsize=25,
         ),
         widget.TextBox(
-            foreground=colors[2],
-            background="#6272a4",
+            text="",
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Current"],
+            padding=5,
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("alacritty -e htop")},
+        ),
+        widget.Memory(
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Current"],
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
+            foreground=colors_dracula["Comment"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Comment"],
+            padding=8,
+        ),
+        widget.ThermalSensor(
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Comment"],
+            padding=2,
+            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("psensor")},
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Comment"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
+            foreground=colors_dracula["Purple"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Purple"],
             text="  ",
         ),
         widget.Clock(
-            foreground=colors[2],
-            background="#6272a4",
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Purple"],
             format='%I:%M %p',
         ),
         widget.TextBox(
-            foreground=colors[2],
-            background="#6272a4",
+            text=" ",
+            foreground=colors_dracula["Purple"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
+            foreground=colors_dracula["Pink"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Pink"],
             text=" ",
         ),
         widget.Clock(
-            foreground=colors[2],
-            background="#6272a4",
+            foreground=colors_dracula["Foreground"],
+            background=colors_dracula["Pink"],
             format='%a %d-%m',
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors_dracula["Pink"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
+        ),
+        widget.TextBox(
+            text="",
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
+            padding=-0.5,
+            fontsize=25,
         ),
         widget.CheckUpdates(
             update_interval = 1800,
-            background = "#6272a4",
-            foreground = colors[2],
-            colour_no_updates = colors[2],
+            background = colors_dracula["Current"],
+            foreground = colors_dracula["Foreground"],
+            colour_no_updates = colors_dracula["Red"],
             # custom_command = "checkupdates",
             display_format =  "{updates} ﮮ Updates",
             distro = 'Arch_checkupdates',
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(my_Term+" -e sudo pacman -Syu")},
         ),
         widget.TextBox(
-            text=" ⏻ ",
-            foreground=colors[2],
-            background="#6272a4",
-            padding=5,
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn("arcolinux-logout") },
-            fontsize = 13,
-        ),
-        widget.Pomodoro(
-            foreground=colors[2],
-            background="#6272a4",
-            length_pomodori = 25,
-            length_short_break = 5,
-            length_long_break = 15,
-        ),
-        widget.TextBox(
             text=" ",
-            foreground="#6272a4",
-            background=None,
-            padding=-0.5,
-            fontsize=25,
-        ),
-        widget.TextBox(
-            text="",
-            foreground="#000000",
-            background=None,
+            foreground=colors_dracula["Current"],
+            background=colors_dracula["Background"],
             padding=-0.5,
             fontsize=25,
         ),
         widget.Systray(
             background="#000000",
             padding=5,
-        ),
-        widget.TextBox(
-            text=" ",
-            foreground="#000000",
-            background=None,
-            padding=-0.5,
-            fontsize=25,
         ),
 
     ]

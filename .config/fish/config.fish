@@ -1,6 +1,7 @@
  set PATH $PATH /home/js/.local/bin
 
 set TERM "xterm-256color"
+export EDITOR=nvim
 
 
 

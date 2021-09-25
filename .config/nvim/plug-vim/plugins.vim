@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/autoload/plugged')
+call plug#begin('~/.local/share/nvim/site/autoload/plugged')
 
     "Plugins
     
@@ -9,20 +9,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "NERDTree
     Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
     " Plug 'airblade/vim-rooter'
 
-    "ranger
-    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-
     "Theme
-    Plug 'joshdick/onedark.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'morhetz/gruvbox'
-    Plug 'arcticicestudio/nord-vim'
-    Plug 'sonph/onehalf', { 'rtp': 'vim' }
-    Plug 'crusoexia/vim-monokai'
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -48,9 +39,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Close tag
     Plug 'alvan/vim-closetag'
 
-    "EasyMotion
-    Plug 'easymotion/vim-easymotion'
-
     "Colors
     Plug 'norcalli/nvim-colorizer.lua'
 
@@ -66,6 +54,23 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-telescope/telescope.nvim'   
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-call plug#end()
+    "Plugis para prueba
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'karb94/neoscroll.nvim'
+    Plug 'tpope/vim-surround'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'natebosch/vim-lsc'
+    Plug 'mfussenegger/nvim-jdtls'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'L3MON4D3/LuaSnip' 
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    call plug#end()
+
+
 
 

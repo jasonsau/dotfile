@@ -20,3 +20,4 @@ redshift-gtk &
 setxkbmap -layout us -variant dvorak &
 double-screen.sh &
 nitrogen --restore &
+pulse-volume-xob.py | xob -s volume &
