@@ -212,7 +212,7 @@ myKeyBinding =
 -- myWorkspace= ["www","file","term","code","set","soc","music"]
 --       謹        (ﱘ
 -- f108
-myWorkspace= ["\xe745 ", "\xe5fe ", "\xe795 ", "\xf121 ", "\xf8c5 ", "\xf108 ", "\xe217 ", "\xf001 "]
+myWorkspace= ["\xe745  ", "\xe5fe  ", "\xe795  ", "\xf121  ", "\xf8c5  ", "\xf108  ", "\xe217  ", "\xf001 "]
 
 main :: IO ()
 main = do

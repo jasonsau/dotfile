@@ -14,6 +14,7 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
     "Theme
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
 
     " Stable version of coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}

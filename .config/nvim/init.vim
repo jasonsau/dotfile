@@ -18,3 +18,4 @@ source $HOME/.config/nvim/plug-config/jdtls.vim
 source $HOME/.config/nvim/plug-config/cmp.vim
 source $HOME/.config/nvim/plug-config/lspconfig.vim
 source $HOME/.config/nvim/plug-config/telescope.vim
+source $HOME/.config/nvim/plug-config/ttsserver.vim
