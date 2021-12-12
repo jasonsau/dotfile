@@ -63,11 +63,11 @@ myTabTheme = def { fontName            = "xft:Mononoki Nerd Font"
                  , inactiveTextColor   = "#d0d0d0"
                  }
 myStartupHook = do
-    -- spawnOnce "nitrogen --restore &"
+    spawnOnce "nitrogen --restore &"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+    spawnOnce "/home/js/.local/bin/autostart.sh &"
     -- spawnOnce "variety &"
     spawnOnce "double-screen.sh &"
-    spawnOnce "nitrogen --restore &"
     setWMName "LG3D"
 
 myManageHook = composeAll . concat $

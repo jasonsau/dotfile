@@ -9,8 +9,9 @@ source $HOME/.config/nvim/plug-config/autopairs.vim
 source $HOME/.config/nvim/plug-config/closetag.vim
 source $HOME/.config/nvim/plug-config/identline.vim
 source $HOME/.config/nvim/plug-config/prettier.vim
-source $HOME/.config/nvim/themes/dracula.vim
-" source $HOME/.config/nvim/themes/gruvbox.vim 
+"source $HOME/.config/nvim/themes/dracula.vim
+"source $HOME/.config/nvim/themes/onedark.vim
+ source $HOME/.config/nvim/themes/gruvbox.vim 
 source $HOME/.config/nvim/lua/colorizer.vim
 source $HOME/.config/nvim/plug-config/intelephense.vim
 source $HOME/.config/nvim/plug-config/scroll.vim
@@ -19,3 +20,4 @@ source $HOME/.config/nvim/plug-config/cmp.vim
 source $HOME/.config/nvim/plug-config/lspconfig.vim
 source $HOME/.config/nvim/plug-config/telescope.vim
 source $HOME/.config/nvim/plug-config/ttsserver.vim
+source $HOME/.config/nvim/plug-config/rooter.vim

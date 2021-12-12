@@ -1,14 +1,10 @@
-import subprocess
-from os import listdir
-from os import path
-import json
-import os
-from Xlib import display as xdisplay
-from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.lazy import lazy
-from libqtile import layout, bar, widget, hook
 from typing import List  
-from libqtile import qtile
+import os
+import subprocess
+from libqtile import qtile, hook
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
 
 my_Term = "alacritty"
 mod = "mod4"
@@ -30,6 +26,8 @@ keys = [
         Key([mod], "n", lazy.layout.normalize()),
         Key([mod], "h", lazy.layout.grow()),
         Key([mod], "l", lazy.layout.shrink()),
+        Key([mod], "b", lazy.spawn("dm-tool lock")),
+        Key([mod], "n", lazy.spawn("brave")),
 
         # Switch window focus to other pane(s) of stack
         Key([mod], "space", lazy.layout.next()),
@@ -229,7 +227,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Current"],
             background=colors_dracula["Background"],
-            padding=-3.1,
+            padding=-4.5,
              # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -251,7 +249,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Comment"],
             background=colors_dracula["Current"],
-            padding=-3.1,
+            padding=-4.5,
              # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -273,7 +271,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Purple"],
             background=colors_dracula["Comment"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -294,7 +292,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Pink"],
             background=colors_dracula["Purple"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -317,7 +315,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Current"],
             background=colors_dracula["Pink"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -338,7 +336,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Comment"],
             background=colors_dracula["Current"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -360,7 +358,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Purple"],
             background=colors_dracula["Comment"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -380,7 +378,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Pink"],
             background=colors_dracula["Purple"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -400,7 +398,7 @@ def init_widgets_list():
             # text="",
             foreground=colors_dracula["Current"],
             background=colors_dracula["Pink"],
-            padding=-3.1,
+            padding=-4.5,
             # padding=-0.5,
             fontsize=45,
             # fontsize=25,
@@ -437,6 +435,7 @@ def init_widgets_screen1():
 def init_screens():
     screens = [
         Screen(top=bar.Bar(widgets = init_widgets_screen1(), opacity = 1, size=22)),
+        Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:9], size = 22)),
         Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:9], size = 22)),
     ]
     return screens
@@ -478,10 +477,9 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='nitrogen'),
 ])
 
-#autostart
 @hook.subscribe.startup_complete
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser('/home/js/.config/qtile/autostart.sh')
     subprocess.call([home])
 
 auto_fullscreen = True

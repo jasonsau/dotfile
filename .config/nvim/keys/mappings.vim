@@ -32,3 +32,5 @@ nnoremap <C-l> <C-w>l
 
 " Delete file of buffer
 nnoremap <Leader>w :bdelete<CR>
+nnoremap <Leader>ff :Telescope find_files<CR>
+nnoremap <Leader>fb :Telescope buffers<CR>

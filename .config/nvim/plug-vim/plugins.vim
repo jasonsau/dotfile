@@ -9,7 +9,7 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
     "NERDTree
     Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
-    " Plug 'airblade/vim-rooter'
+     Plug 'airblade/vim-rooter'
 
     "Theme
     Plug 'dracula/vim', { 'as': 'dracula' }
@@ -74,4 +74,9 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
 
 
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
+
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'

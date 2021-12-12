@@ -1,5 +1,5 @@
 syntax enable                           
-" set hidden                             
+set hidden                             
 set wrap                              
 set encoding=utf-8                   
 set pumheight=10                        
