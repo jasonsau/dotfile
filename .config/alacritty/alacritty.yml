@@ -42,3 +42,7 @@ window:
         x: 6
         y: 6
     title: Alacritty
+cursor:
+  style: 
+    shape: Block
+    blinking: On

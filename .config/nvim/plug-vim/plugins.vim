@@ -70,6 +70,8 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
     Plug 'L3MON4D3/LuaSnip' 
     Plug 'hrsh7th/cmp-buffer'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'sbdchd/neoformat'
+    Plug 'APZelos/blamer.nvim'
     call plug#end()
 
 
