@@ -74,6 +74,7 @@ keys = [
         Key([mod, "shift"], "e", lazy.to_screen(1)),
         Key([mod], "period", lazy.next_screen()),
         Key([mod], "comma", lazy.prev_screen()),
+        Key([mod, "shift"], "s", lazy.spawn("spectacle -r")),
 
         Key([mod, "shift"], "f", lazy.window.toggle_floating()),
 

@@ -206,6 +206,7 @@ myKeyBinding =
         ("M-v", spawn "pavucontrol"),
         ("M-<Return>", spawn myTerminal),
         ("M-S-<Return>", spawn "kitty")
+        ("M-S-s", spawn "spectacle -r")
      
     ]
 
