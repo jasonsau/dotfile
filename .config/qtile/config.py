@@ -437,7 +437,7 @@ def init_screens():
     screens = [
         Screen(top=bar.Bar(widgets = init_widgets_screen1(), opacity = 1, size=22)),
         Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:9], size = 22)),
-        Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:9], size = 22)),
+        Screen(top=bar.Bar(widgets = init_widgets_screen1()[0:4], size = 22)),
     ]
     return screens
 
