@@ -1,4 +1,14 @@
-background_opacity: 0.9
+window:
+    class:
+        general: Alacritty
+        instance: Alacritty
+    padding:
+        x: 6
+        y: 6
+    title: Alacritty
+    dinamyc_title: false
+    opacitiy: 0.4
+
 colors:
     bright:
         black: "0x555555"
@@ -33,15 +43,7 @@ font:
     normal:
         family: JetBrainsMono Nerd Font
         style: Regular
-    size: 11
-window:
-    class:
-        general: Alacritty
-        instance: Alacritty
-    padding:
-        x: 6
-        y: 6
-    title: Alacritty
+    size: 10
 cursor:
   style: 
     shape: Block

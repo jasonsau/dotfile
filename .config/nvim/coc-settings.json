@@ -10,5 +10,10 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "prettier.tabWidth": 4,
-  "coc.source.emoji.filetypes": ["markdown", "php", "js", "html", "python", "json"]
+  "coc.source.emoji.filetypes": ["markdown", "php", "js", "html", "python", "json"],
+  "java.configuration.runtimes": [
+  ],
+  "java.completion.enabled": true,
+  "java.import.maven.enabled": true
+
 }

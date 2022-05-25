@@ -1,0 +1,111 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.wordWrap": "on",
+    "editor.cursorBlinking": "expand",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "bold",
+    "diffEditor.codeLens": true,
+    "workbench.list.smoothScrolling": true,
+    "workbench.startupEditor": "none",
+    "workbench.trustedDomains.promptInTrustedWorkspace": true,
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.iconTheme": "material-icon-theme",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.guides.bracketPairs": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.codeLens": true,
+    "mssql.connections": [
+        {
+            "server": "localhost",
+            "database": "",
+            "authenticationType": "SqlLogin",
+            "user": "sa",
+            "password": "",
+            "emptyPasswordInput": false,
+            "savePassword": true
+        },
+        {
+            "server": "localhost",
+            "database": "",
+            "authenticationType": "SqlLogin",
+            "user": "bonitadev",
+            "password": "",
+            "emptyPasswordInput": false,
+            "savePassword": true
+        }
+    ],
+    "mssql.enableQueryHistoryCapture": true,
+
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.overrideCopy": true,
+    "vim.useSystemClipboard": true,
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "vim.neovimConfigPath": "/home/js/.config/nvim/init.vim",
+    "vim.neovimUseConfigFile": true,
+    "vim.leader": " ",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<C-n>"],
+            "commands": [
+                ":new"
+            ],
+        }, {
+            "before": ["<TAB>"],
+            "commands": [
+                ":bn"
+            ]
+        }, {
+            "before": ["<S-TAB>"],
+            "commands": [
+                ":bp"
+            ]
+        },
+        {
+            "before": ["<C-w>"],
+            "commands": [
+                ":bdelete"
+            ]
+        },
+        {
+            "before": ["<leader>", "n", "t"],
+            "commands": ["workbench.view.explorer"],
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+
+        }
+    ],
+    "telemetry.telemetryLevel": "off",
+    "editor.codeActionsOnSave": {
+    
+    }
+
+}
