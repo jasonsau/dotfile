@@ -23,4 +23,4 @@ alias t='touch'
 
 
 
-
+starship init fish | source

@@ -19,7 +19,10 @@ import XMonad.StackSet(sink)
 import qualified XMonad.StackSet as W
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.WorkspaceHistory(workspaceHistoryHook)
+import XMonad.Hooks.ManageDocks
 import XMonad.Actions.MouseResize
+import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
+
 
 import XMonad.Layout.Renamed 
 import XMonad.Layout.ToggleLayouts as T(ToggleLayout (Toggle), toggleLayouts) 
@@ -45,14 +48,31 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 
 
+import XMonad.Util.NamedActions
+
+import Data.Monoid
+import Data.Char (isSpace, toUpper)
+import Data.Maybe (isJust)
+
+
+myTerminal :: String
 myTerminal = "alacritty"
+
+myNormalBorder :: String
 myNormalBorder = "#1D2330"
+
+myFocusBorder :: String
 myFocusBorder = "#e1acff"
+
+myBorderWidth :: Dimension
 myBorderWidth = 2
+
+myModMask :: KeyMask
 myModMask = mod4Mask
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
 
 myTabTheme = def { fontName            = "xft:Mononoki Nerd Font"
                  , activeColor         = "#46d9ff"
@@ -62,13 +82,20 @@ myTabTheme = def { fontName            = "xft:Mononoki Nerd Font"
                  , activeTextColor     = "#282c34"
                  , inactiveTextColor   = "#d0d0d0"
                  }
+                 
+
+myStartupHook :: X ()
 myStartupHook = do
+
     spawnOnce "nitrogen --restore &"
+
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+
     spawnOnce "/home/js/.local/bin/autostart.sh &"
-    -- spawnOnce "variety &"
-    spawnOnce "double-screen.sh &"
     setWMName "LG3D"
+
+
+myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 
 myManageHook = composeAll . concat $
     [ [className =? c --> doCenterFloat | c <- myCFloats]
@@ -88,6 +115,7 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 -- Layouts definition
 
 tall = renamed [Replace "tall"]
+    $ smartBorders
     $ windowNavigation
     $ addTabs shrinkText myTabTheme
     $ subLayout [] (smartBorders Simplest)
@@ -95,21 +123,23 @@ tall = renamed [Replace "tall"]
     $ mySpacing 4
     $ ResizableTall 1 (3/100) (1/2) []
 
-magnify = renamed  [Replace "magnify"]
-    $ windowNavigation
-    $ addTabs shrinkText myTabTheme
-    $ subLayout [] (smartBorders Simplest)
-    $ magnifier
-    $ limitWindows 12
-    $ mySpacing 8
-    $ ResizableTall 1 (3/100) (1/2) []
+-- magnifier = renamed  [Replace "magnify"]
+--    $ smartBorders
+--    $ windowNavigation
+--    $ addTabs shrinkText myTabTheme
+--    $ subLayout [] (smartBorders Simplest)
+--    $ limitWindows 12
+--    $ mySpacing 8
+--    $ ResizableTall 1 (3/100) (1/2) []
 
 monocle = renamed [Replace "monocle"] 
+    $ smartBorders
     $ windowNavigation
     $ addTabs shrinkText myTabTheme
-    -- $ subLayout [] (smartBorders Simplest)
+    $ subLayout [] (smartBorders Simplest)
     $ mySpacing 4
-    $ limitWindows 20 Full
+    $ limitWindows 20 
+    $ Full
 
 grid = renamed [Replace "grid"]
     $ windowNavigation
@@ -137,7 +167,9 @@ spirals = renamed [Replace "spirals"]
 tabs = renamed [Replace "tabs"]
     $ tabbed shrinkText myTabTheme
 
-floats = renamed [Replace "floats"] $ limitWindows 20 simplestFloat
+floats = renamed [Replace "floats"] 
+    $ smartBorders
+    $ simplestFloat
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
@@ -160,8 +192,7 @@ myLayoutHook = avoidStruts
     $ T.toggleLayouts floats
     $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
-    myDefaultLayout = tall
-        ||| magnify
+    myDefaultLayout = withBorder myBorderWidth tall
         ||| noBorders monocle
         ||| threeCol
         ||| grid
@@ -170,45 +201,69 @@ myLayoutHook = avoidStruts
         ||| spirals
         ||| tabs
 
-myKeyBinding = 
-    [
-        --Menu
-        ("M-S-m", spawn "rofi -show drun"),
-        ("M-S-n", spawn "rofi -show window"),
+
+
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+  h <- spawnPipe $ "yad --text-info --fontname=\"SauceCodePro Nerd Font Mono 12\" --fore=#46d9ff back=#282c36 --center --geometry=1200x800 --title \"XMonad keybindings\""
+  --hPutStr h (unlines $ showKm x) -- showKM adds ">>" before subtitles
+  hPutStr h (unlines $ showKmSimple x) -- showKmSimple doesn't add ">>" to subtitles
+  hClose h
+  return ()
+
+
+subtitle' :: String -> ((KeyMask, KeySym), NamedAction)
+subtitle' x = ((0,0), NamedAction $ map toUpper
+                      $ sep ++ "\n-- " ++ x ++ " --\n" ++ sep)
+
+    where 
+        sep = replicate (6 + length x) '-'
+
+myKeys :: XConfig  l0 -> [((KeyMask, KeySym), NamedAction)]
+myKeys c = 
+
+    let subKeys str ks = subtitle' str : mkNamedKeymap c ks in
+    subKeys "Xmonad keys"
+    [ ("M-S-m", addName "Run Rofi" $ spawn "rofi -show drun"),
+      ("M-S-n", addName "Run Rofi Window" $ spawn "rofi -show window"),
 
         --Restart and Recompile
-        ("M-C-r", spawn "xmonad --recompile"),
-        ("M-S-r", spawn "xmonad --restart"),
+        ("M-C-r", addName "Recompile" $ spawn "xmonad --recompile"),
+        ("M-S-r", addName "Restart" $ spawn "xmonad --restart"),
         --Monitor
-        ("M-.", nextScreen),
-        ("M-,", prevScreen),
+        ("M-.", addName "Next Monitor" $ nextScreen),
+        ("M-,", addName "Prev Monitor" $ prevScreen),
         --General Functions
-        ("M-S-f", withFocused $windows . W.sink),
-        ("M-w", kill), ("M-S-w", killAll),
+        ("M-S-f", addName "Focus" $ withFocused $windows . W.sink),
+        ("M-w", addName "Kill" $ kill), 
+        ("M-S-w", addName "Kill All" $ killAll),
         --Move Windows
-        ("M-j", windows W.focusDown),
-        ("M-k", windows W.focusUp),
-        ("M-S-j", windows W.swapDown),
-        ("M-S-k", windows W.swapUp),
-        ("M-h", sendMessage Shrink),
-        ("M-l", sendMessage Expand),
-        ("M-S-h", sendMessage MirrorShrink),
-        ("M-S-l", sendMessage MirrorExpand),
-        ("M-<Tab>", sendMessage NextLayout),
-        ("M-<Space>", sendMessage(T.Toggle "floats")),
+        ("M-j", addName "Focus Down" $ windows W.focusDown),
+        ("M-k", addName "Focus Up" $ windows W.focusUp),
+        ("M-S-j", addName "Swap Down" $ windows W.swapDown),
+        ("M-S-k", addName "Swap Up" $  windows W.swapUp),
+        ("M-h", addName "Shrink" $ sendMessage Shrink),
+        ("M-l", addName "Expand" $ sendMessage Expand),
+        ("M-S-h", addName "MirrorShink" $ sendMessage MirrorShrink),
+        ("M-S-l", addName "MirrorExpand" $ sendMessage MirrorExpand),
+        ("M-<Tab>", addName "NextLayout" $ sendMessage NextLayout),
+        ("M-<Space>", addName "Float" $ sendMessage(T.Toggle "floats")),
 
         --Volumen
-        ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-        ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+        ("<XF86AudioRaiseVolume>", addName "Volumen Up" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        ("<XF86AudioLowerVolume>", addName "Volumen Down" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         --Application
-        ("<XF86Search>", spawn "firefox-bin"),
-        ("M-S-p", spawn "pcmanfm"),
-        ("M-v", spawn "pavucontrol"),
-        ("M-<Return>", spawn myTerminal),
-        ("M-S-<Return>", spawn "kitty"),
-        ("M-S-s", spawn "spectacle -r")
+        ("<XF86Search>", addName "Open Firefox" $ spawn "firefox-bin"),
+        ("M-S-p", addName "Open File Explorer" $ spawn "pcmanfm"),
+        ("M-v", addName "Open PavuControl" $ spawn "pavucontrol"),
+        ("M-<Return>", addName "Open Terminal" $ spawn myTerminal),
+        ("M-S-<Return>", addName "Open Kitty" $ spawn "kitty"),
+        ("M-S-s", addName "Open ScreenShot" $ spawn "spectacle -r")
      
     ]
+         where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
+               nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
+
 
 -- myWorkspace= ["www","file","term","code","set","soc","music"]
 --       謹        (ﱘ
@@ -217,21 +272,20 @@ myWorkspace= ["\xe745  ", "\xe5fe  ", "\xe795  ", "\xf121  ", "\xf8c5  ", "\xf10
 
 main :: IO ()
 main = do
-
     xmobarMonitor <- spawnPipe "xmobar -x 0 ~/.config/xmobar/screen0"
     xmobarMonitor1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/screen1"
-    xmonad $ ewmh  def{   
-        manageHook = (isFullscreen --> doFullFloat) <+>  myManageHook <+> manageDocks <+> insertPosition End Newer,  
-        handleEventHook = docksEventHook,
+    xmonad  $ ewmh $ myKeys $ docks $ def{   
+        manageHook =  myManageHook <+> manageDocks,  
+--        handleEventHook = docks,
+        terminal=myTerminal,
         startupHook = myStartupHook,
         workspaces = myWorkspace,
         modMask = myModMask,
         borderWidth=myBorderWidth,
-        terminal = myTerminal,
         layoutHook = showWName' myShowWNameTheme $ myLayoutHook,
         focusedBorderColor = myFocusBorder,
         normalBorderColor = myNormalBorder,
-        logHook =workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP{
+        logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP{
             ppOutput = \x -> hPutStrLn xmobarMonitor x >> hPutStrLn xmobarMonitor1 x,
             ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]",
             ppVisible = xmobarColor "#98be65" "",
@@ -243,5 +297,4 @@ main = do
             ppExtras = [windowCount],
             ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
         }
-    }`additionalKeysP` myKeyBinding
-
+    }
