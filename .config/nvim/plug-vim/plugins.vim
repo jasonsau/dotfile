@@ -82,3 +82,5 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
+
+

@@ -22,4 +22,4 @@ source $HOME/.config/nvim/plug-config/telescope.vim
 source $HOME/.config/nvim/plug-config/ttsserver.vim
 source $HOME/.config/nvim/plug-config/rooter.vim
 source $HOME/.config/nvim/plug-config/blamer.vim
-
+source $HOME/.config/nvim/plug-config/treesitter.vim

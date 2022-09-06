@@ -1,6 +1,6 @@
 {
     "files.autoSave": "afterDelay",
-    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Fira Code Nerd Font','JetBrainsMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.wordWrap": "on",
     "editor.cursorBlinking": "expand",
     "editor.fontLigatures": true,
@@ -111,6 +111,9 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "git.mergeEditor": true,
-    "window.commandCenter": true
+    "window.commandCenter": true,
+    "workbench.sideBar.location": "right",
+    "editor.inlineSuggest.enabled": true,
+    "editor.stickyScroll.enabled": true
 
 }

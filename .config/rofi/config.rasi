@@ -3,5 +3,4 @@ show-icons:true;
 modi: "drun,window,run";
 display-drun: "Run ";
 }
-@theme "~/.config/rofi/theme/onedark.rasi"
 
