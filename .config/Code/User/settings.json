@@ -1,15 +1,15 @@
 {
     "files.autoSave": "afterDelay",
-    "editor.fontFamily": "'Fira Code Nerd Font','JetBrainsMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "FiraCode NF",
     "editor.wordWrap": "on",
     "editor.cursorBlinking": "expand",
     "editor.fontLigatures": true,
-    "editor.fontWeight": "bold",
+    "editor.fontWeight": "600",
     "diffEditor.codeLens": true,
     "workbench.list.smoothScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.trustedDomains.promptInTrustedWorkspace": true,
-    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "editor.suggestSelection": "first",
@@ -81,8 +81,9 @@
         },
         {
             "before": ["<leader>", "n", "t"],
-            "commands": ["workbench.view.explorer"],
-        }
+            "commands": ["workbench.action.toggleSidebarVisibility"],
+        },
+    
     ],
     "vim.visualModeKeyBindings": [
         {
@@ -114,6 +115,15 @@
     "window.commandCenter": true,
     "workbench.sideBar.location": "right",
     "editor.inlineSuggest.enabled": true,
-    "editor.stickyScroll.enabled": true
-
+    "editor.stickyScroll.enabled": true,
+    "editor.fontSize": 13,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false,
+        "javascript": true
+    },
+    "editor.foldingMaximumRegions": 50000,
+    "gitlens.codeLens.enabled": false,
 }

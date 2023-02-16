@@ -7,9 +7,9 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
 
     "File Explorer
     "NERDTree
-    Plug 'scrooloose/NERDTree'
     Plug 'preservim/nerdTree'
-     Plug 'airblade/vim-rooter'
+    "Plug 'scrooloose/NERDTree'
+    "Plug 'airblade/vim-rooter'
 
     "Theme
     Plug 'dracula/vim', { 'as': 'dracula' }
@@ -17,7 +17,7 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
     Plug 'joshdick/onedark.vim'
 
     " Stable version of coc
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     "airline
     Plug 'vim-airline/vim-airline'
@@ -57,30 +57,23 @@ call plug#begin('~/.local/share/nvim/site/autoload/plugged')
 
     "Plugis para prueba
     Plug 'neovim/nvim-lspconfig'
-    Plug 'glepnir/lspsaga.nvim'
+    "Plug 'glepnir/lspsaga.nvim'
     Plug 'karb94/neoscroll.nvim'
     Plug 'tpope/vim-surround'
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'natebosch/vim-lsc'
-    Plug 'mfussenegger/nvim-jdtls'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'L3MON4D3/LuaSnip' 
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'sbdchd/neoformat'
+    "Plug 'kyazdani42/nvim-web-devicons'
+    "Plug 'natebosch/vim-lsc'
+    "Plug 'mfussenegger/nvim-jdtls'
+    "Plug 'hrsh7th/nvim-cmp'
+    "Plug 'hrsh7th/vim-vsnip'
+    "Plug 'hrsh7th/cmp-nvim-lsp'
+    "Plug 'saadparwaiz1/cmp_luasnip'
+    "Plug 'L3MON4D3/LuaSnip' 
+    "Plug 'hrsh7th/cmp-buffer'
+    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    "Plug 'sbdchd/neoformat'
     Plug 'APZelos/blamer.nvim'
     call plug#end()
 
 
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 

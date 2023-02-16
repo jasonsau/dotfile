@@ -1,5 +1,6 @@
 set PATH $PATH /home/js/.local/bin
 set PATH $PATH /usr/local/go/bin
+set PATH $PATH /opt/flutter/bin
 
 set TERM "xterm-256color"
 export EDITOR=nvim
