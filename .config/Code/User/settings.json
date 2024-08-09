@@ -126,4 +126,17 @@
     },
     "editor.foldingMaximumRegions": 50000,
     "gitlens.codeLens.enabled": false,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "github.copilot.editor.enableAutoCompletions": true,
+    "security.workspace.trust.untrustedFiles": "open",
 }

@@ -87,12 +87,12 @@ keys = [
 
 group_names = [(" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
-               (" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
-               (" ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'monadtall'}),
                (" ", {'layout': 'floating'}),
-               ("ﱘ ", {'layout': 'monadtall'}),
+               (" ", {'layout': 'monadtall'}),
                ]
 colors_dracula = {
         "Background": "#282a36",
@@ -256,7 +256,7 @@ def init_widgets_list():
             # fontsize=25,
         ),
         widget.TextBox(
-            text="",
+            text="󰌌 ",
             background=colors_dracula["Comment"],
             foreground=colors_dracula["Foreground"],
             padding=10,
@@ -278,7 +278,7 @@ def init_widgets_list():
             # fontsize=25,
         ),
         widget.TextBox(
-            text="墳",
+            text="󰕾 ",
             foreground=colors_dracula["Foreground"],
             background=colors_dracula["Purple"],
             padding=8,
@@ -322,7 +322,7 @@ def init_widgets_list():
             # fontsize=25,
         ),
         widget.TextBox(
-            text="",
+            text="󰍛 ",
             foreground=colors_dracula["Foreground"],
             background=colors_dracula["Current"],
             padding=5,
@@ -343,7 +343,7 @@ def init_widgets_list():
             # fontsize=25,
         ),
         widget.TextBox(
-            text=" ",
+            text=" 󰏈 ",
             foreground=colors_dracula["Foreground"],
             background=colors_dracula["Comment"],
             padding=8,
@@ -367,7 +367,7 @@ def init_widgets_list():
         widget.TextBox(
             foreground=colors_dracula["Foreground"],
             background=colors_dracula["Purple"],
-            text="  ",
+            text=" 󰥔 ",
         ),
         widget.Clock(
             foreground=colors_dracula["Foreground"],
@@ -410,7 +410,7 @@ def init_widgets_list():
             foreground = colors_dracula["Foreground"],
             colour_no_updates = colors_dracula["Red"],
             # custom_command = "checkupdates",
-            display_format =  "{updates} ﮮ Updates",
+            display_format =  "{updates} 󰚰  Updates",
             distro = 'Arch_checkupdates',
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(my_Term+" -e sudo pacman -Syu")},
         ),
