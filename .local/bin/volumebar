@@ -1,2 +1,2 @@
 #!/bin/bash
-pulse-volume-xob.py | xob -s volume 
+/home/js/.local/bin/pulse-volume-xob.py | xob -c /home/js/.config/xob/styles.cfg -s volume

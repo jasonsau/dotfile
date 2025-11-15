@@ -1,6 +1,6 @@
 {
     "files.autoSave": "afterDelay",
-    "editor.fontFamily": "FiraCode NF",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
     "editor.wordWrap": "on",
     "editor.cursorBlinking": "expand",
     "editor.fontLigatures": true,
@@ -9,8 +9,7 @@
     "workbench.list.smoothScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.trustedDomains.promptInTrustedWorkspace": true,
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-icons",
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -126,4 +125,5 @@
     },
     "editor.foldingMaximumRegions": 50000,
     "gitlens.codeLens.enabled": false,
+    "workbench.colorTheme": "Dracula Theme",
 }

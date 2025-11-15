@@ -2,17 +2,6 @@
 
 #export PATH=$PATH:/usr/local/go/bin &
 #Screens
-
-dp=`xrandr | grep ' connected' | grep 'DP' | awk '{print $1}'`
-
-#echo "$dp"
-
-if [ "$dp" = "DP-1" ]; then
-    nuevo.sh &
-else 
-    xrandr --output HDMI-0 --primary --mode 2560x1080 --pos 0x0 --rotate normal &
-fi
-
 #nm-applet &
 #picom --experimental-backends &
 #cbatticon &

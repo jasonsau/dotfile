@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
-.local/bin/pulse-volume-xob.py | xob -s volume &
+#.local/bin/pulse-volume-xob.py | xob -s volume &
+/home/js/.screenlayout/triple-screen.sh &
 nm-applet &
 picom --experimental-backends &
-cbatticon &
 volumeicon &
 udiskie -t &
-redshift-gtk &
 setxkbmap -layout us -variant dvorak &
-double-screen.sh &
 nitrogen --restore &
-
-
