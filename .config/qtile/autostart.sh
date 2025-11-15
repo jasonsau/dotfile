@@ -2,7 +2,7 @@
 
 /home/js/.screenlayout/triple-screen.sh &
 nm-applet &
-picom --experimental-backends &
+picom --config $HOME/.config/picom/picom.conf &
 cbatticon &
 volumeicon &
 udiskie -t &

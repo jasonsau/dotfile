@@ -1,6 +1,8 @@
-configuration{
-show-icons:true;
-modi: "drun,window,run";
-display-drun: "Run ";
+configuration {
+  show-icons:true;
+  modes: [ drun, window, run ];
+  display-drun: "Run ";
 }
 
+//@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+@theme "/usr/share/rofi/themes/fancy.rasi"
